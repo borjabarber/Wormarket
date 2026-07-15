@@ -20,6 +20,81 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Preparar demostracion del TFM.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente: `Preparar demostracion del TFM`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se uso la skill del sistema `Presentations` para crear un PowerPoint horizontal editable.
+- Se revisaron las instrucciones de calidad narrativa, API de presentaciones, Codex Grid Layout Library y speaker notes.
+- Se preparo una presentacion de 5 slides: presentacion del proyecto, fase local, fase de despliegue, stack tecnologico y guion de demo.
+- Se reutilizaron imagenes demo versionadas del proyecto para mantener identidad visual sin depender de assets externos.
+- Se anadieron notas del orador en cada slide para facilitar la defensa.
+- Se renderizaron las slides, se reviso visualmente la composicion y se ajusto la slide de stack para evitar texto demasiado justo.
+- Se marco `Preparar demostracion del TFM` como completada en `TASKS.md`.
+- Se actualizo la version del proyecto de `1.0.0` a `1.0.1` segun `VERSIONING.md`, por nuevo entregable documental de defensa.
+
+### Archivos creados
+
+- `docs/project/Wormarket_TFM_presentation.pptx`
+
+### Archivos tocados
+
+- `README.md`
+- `docs/project/Wormarket_TFM_presentation.pptx`
+- `docs/project/TASKS.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/VERSIONING.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/WORK_LOG.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `Presentations`
+- `skills/deployment/SKILL.md`
+- `skills/testing/SKILL.md`
+
+### Skills aplicadas
+
+- `Presentations`: usada para generar un `.pptx` horizontal editable, renderizarlo y validar desbordes.
+- `skills/deployment/SKILL.md`: usada para encajar el contenido con la fase de despliegue y la demo publica.
+- `skills/testing/SKILL.md`: usada para definir QA de la presentacion mediante render y prueba de overflow.
+
+### Skills descartadas
+
+- `skills/frontend/SKILL.md`: descartada porque no hubo cambios de interfaz.
+- `skills/backend/SKILL.md`: descartada porque no hubo cambios de API.
+- `skills/security/SKILL.md`: descartada como principal porque no se tocaron secretos ni configuracion sensible.
+
+### Comprobaciones
+
+- `render_slides.py docs/project/Wormarket_TFM_presentation.pptx`: correcto; 5 slides renderizadas.
+- `slides_test.py docs/project/Wormarket_TFM_presentation.pptx`: correcto; sin overflow detectado.
+- Revision visual de la montage generada durante QA: correcta tras ajustar la slide de stack.
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+
+### Resultado
+
+La presentacion horizontal para defensa del TFM queda preparada como archivo editable de PowerPoint.
+
+### Riesgos o pendientes
+
+- No se ha creado tag ni release.
+- Conviene ensayar la demo en directo con la URL publica antes de la defensa.
+
+## 2026-07-15
+
+### Tarea
+
 Cerrar version 1.0.0.
 
 ### Fase activa

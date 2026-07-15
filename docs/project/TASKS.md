@@ -123,4 +123,4 @@ Estado: En progreso
 - [x] Probar flujo completo en URL publica
 - [x] Documentar despliegue
 - [x] Cerrar version 1.0.0
-- [ ] Preparar demostracion del TFM
+- [x] Preparar demostracion del TFM

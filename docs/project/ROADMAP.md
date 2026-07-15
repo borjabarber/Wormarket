@@ -2,11 +2,11 @@
 
 ## Estado actual
 
-Version actual: `1.0.0`.
+Version actual: `1.0.1`.
 
 Fase activa: Despliegue.
 
-La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase de despliegue queda completada con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless, proyecto Vercel conectado, variables de entorno configuradas, despliegue publico operativo, runbook documentado y version `1.0.0` cerrada sin tag ni release.
+La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase de despliegue queda completada con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless, proyecto Vercel conectado, variables de entorno configuradas, despliegue publico operativo, runbook documentado, version `1.0.0` cerrada sin tag ni release y presentacion TFM preparada.
 
 ## Hitos completados
 
@@ -26,7 +26,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Preparar demostracion del TFM.
+- Sin tareas pendientes inmediatas dentro del plan actual.
 
 ## Fase de despliegue
 
@@ -48,6 +48,7 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Probar flujo completo en URL publica. Completado con `npm run test:e2e:public`.
 - Documentar despliegue. Completado con `docs/project/DEPLOYMENT_RUNBOOK.md`.
 - Cerrar version 1.0.0. Completado sin crear tag ni release.
+- Preparar demostracion del TFM. Completado con `docs/project/Wormarket_TFM_presentation.pptx`.
 
 ## 1.0.0
 
