@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.39`.
+- Version actual: `0.27.42`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -79,6 +79,7 @@ URLs locales:
 - Frontend: `http://localhost:3000`
 - Backend: `http://localhost:3001`
 - Health check API: `http://localhost:3001/health`
+- Readiness API: `http://localhost:3001/health/ready`
 - PostgreSQL: `localhost:5432`
 
 Comprobaciones principales:
@@ -178,6 +179,20 @@ Las variables de entorno de produccion estan preparadas en `docs/project/PRODUCT
 
 La API esta preparada para Vercel mediante `api/[...path].ts`, que expone el backend NestJS bajo `/api` y reutiliza la misma configuracion de CORS que el servidor local. En produccion, `NEXT_PUBLIC_API_URL` debe configurarse como `/api`.
 
+Los health checks de despliegue estan documentados en `docs/project/HEALTH_CHECKS.md`. La URL publica expone:
+
+```text
+GET /api/health
+GET /api/health/live
+GET /api/health/ready
+```
+
+Para validarlos contra Vercel:
+
+```bash
+npm run health:public
+```
+
 ## Scripts raiz
 
 La raiz expone los comandos principales del monorepo:
@@ -199,6 +214,7 @@ npm run test:unit
 npm run test:e2e
 npm run test:e2e:cleanup
 npm run test:integration:local
+npm run health:public
 npm run db:generate
 npm run db:migrate
 npm run db:migrate:create -- --name migration_name
@@ -412,7 +428,9 @@ npm run db:seed
 npm run format
 npm run lint
 npm run typecheck
-npm run test
+npm run test --workspace=@wormarket/api -- --pool=forks --teardownTimeout=5000
+npm run test --workspace=@wormarket/web -- --pool=forks --teardownTimeout=5000
+npm run test --workspace=@wormarket/shared-types --workspace=@wormarket/shared-validation --if-present
 npm run build
 npm audit --audit-level=high
 ```
@@ -457,7 +475,7 @@ El frontend configura TanStack Query con una ventana de datos frescos de 60 segu
 
 ## Backend NestJS
 
-El workspace `@wormarket/api` contiene una aplicacion NestJS con TypeScript, ruta de salud local y modulos iniciales de dimensiones, usuarios, identidad, anuncios, favoritos, ofertas, transacciones, conversaciones, valoraciones, notificaciones y moderacion.
+El workspace `@wormarket/api` contiene una aplicacion NestJS con TypeScript, health checks locales y modulos iniciales de dimensiones, usuarios, identidad, anuncios, favoritos, ofertas, transacciones, conversaciones, valoraciones, notificaciones y moderacion.
 
 Comandos disponibles:
 
@@ -471,6 +489,8 @@ La API local se ejecuta en `http://localhost:3001`. CORS HTTP acepta solo `FRONT
 
 ```text
 GET /health
+GET /health/live
+GET /health/ready
 GET /dimensions
 GET /users
 GET /users/:username

@@ -20,6 +20,90 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Configurar health checks.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Configurar health checks`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/backend/SKILL.md`, `skills/testing/SKILL.md` y `skills/security/SKILL.md`.
+- Se mantuvo `GET /health` como liveness compatible con la URL publica existente.
+- Se anadio `GET /health/live` como liveness explicito de API sin consulta a PostgreSQL.
+- Se anadio `GET /health/ready` como readiness con consulta ligera a PostgreSQL.
+- Se protegio el fallo de readiness para devolver `503` sin exponer cadenas de conexion, errores internos ni trazas.
+- Se anadio el script `health:public` para validar `/api/health`, `/api/health/live` y `/api/health/ready` contra la URL publica de Vercel.
+- Se creo `docs/project/HEALTH_CHECKS.md` con endpoints, respuestas esperadas y criterio de aceptacion.
+- Se marco `Configurar health checks` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Probar flujo completo en URL publica`.
+- Se actualizo la version del proyecto de `0.27.41` a `0.27.42` segun `VERSIONING.md`, por nueva capacidad de comprobacion de despliegue.
+
+### Archivos creados
+
+- `docs/project/HEALTH_CHECKS.md`
+- `scripts/check-public-health.mjs`
+
+### Archivos tocados
+
+- `README.md`
+- `apps/api/src/health/health.controller.ts`
+- `apps/api/src/health/health.controller.spec.ts`
+- `apps/api/src/health/health.module.ts`
+- `apps/api/test/health.e2e-spec.ts`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/backend/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para definir health checks utiles en Vercel + Supabase sin coste y sin nuevos proveedores.
+- `skills/backend/SKILL.md`: usada para implementar endpoints NestJS pequenos y respuestas HTTP correctas.
+- `skills/testing/SKILL.md`: usada para ampliar pruebas unitarias y e2e de health checks.
+- `skills/security/SKILL.md`: usada para evitar exposicion de secretos o trazas en fallos de readiness.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada como principal porque no hubo cambios de schema, migraciones ni repositorios; solo una consulta de readiness.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque no se modifico la configuracion de Vercel ni se uso su panel.
+
+### Comprobaciones
+
+- `npm run test --workspace=@wormarket/api -- src/health test/health.e2e-spec.ts`: correcto; 2 archivos y 8 tests pasados.
+- `npm run typecheck --workspace=@wormarket/api`: correcto.
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run test`: correcto; 52 archivos y 111 tests API, 23 archivos y 65 tests web, paquetes compartidos sin tests pendientes.
+- `npm run build`: correcto; build API y build web completadas.
+
+### Resultado
+
+Wormarket tiene health checks de despliegue separados entre liveness y readiness, con verificacion publica reproducible mediante `npm run health:public`.
+
+### Riesgos o pendientes
+
+- `GET /api/health/live` y `GET /api/health/ready` se validaran publicamente tras desplegar el commit en Vercel.
+- La siguiente tarea es `Probar flujo completo en URL publica`.
+
+## 2026-07-15
+
+### Tarea
+
 Configurar GitHub Actions final.
 
 ### Fase activa

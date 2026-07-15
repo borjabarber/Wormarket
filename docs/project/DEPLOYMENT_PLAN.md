@@ -106,6 +106,13 @@ Health check: https://wormarket.vercel.app/api/health
 ```
 
 `GET /api/health` responde `200 OK`. El catalogo usa los datos demo controlados cargados en Supabase.
+Los health checks de despliegue quedan documentados en `docs/project/HEALTH_CHECKS.md`:
+
+- `GET /api/health`: liveness compatible con la URL publica existente.
+- `GET /api/health/live`: liveness explicito de API.
+- `GET /api/health/ready`: readiness con comprobacion ligera de PostgreSQL.
+
+El comando `npm run health:public` valida los tres endpoints contra `https://wormarket.vercel.app` o contra `PUBLIC_BASE_URL`.
 Las rutas profundas de API se enrutan a NestJS mediante `rewrites` en `vercel.json`, incluyendo `GET /api/listings/:slug` para el detalle publico de anuncios.
 
 ## Proyecto Supabase
@@ -195,8 +202,9 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 12. Desplegar. Completado: frontend publico y health check API operativos.
 13. Cargar seed demo controlado. Completado con `db:seed:supabase`.
 14. Configurar GitHub Actions final. Completado con CI gratuita, PostgreSQL local, migraciones, seed, calidad, tests, build y audit.
-15. Probar flujo completo en URL publica.
-16. Documentar despliegue.
+15. Configurar health checks. Completado con liveness, readiness y script `health:public`.
+16. Probar flujo completo en URL publica.
+17. Documentar despliegue.
 
 ## Comprobaciones antes de desplegar
 
@@ -219,7 +227,7 @@ Tambien hay que comprobar:
 ## Comprobaciones despues de desplegar
 
 - Abrir URL publica de Vercel.
-- Comprobar health check.
+- Comprobar health checks con `npm run health:public`.
 - Iniciar sesion con usuario demo.
 - Explorar anuncios.
 - Probar detalle, favoritos y ofertas.

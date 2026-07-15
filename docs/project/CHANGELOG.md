@@ -4,6 +4,14 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.42] - 2026-07-15
+
+### Added
+
+- Health checks de despliegue: `/health`, `/health/live` y `/health/ready`, con readiness validando PostgreSQL sin exponer secretos.
+- Script `health:public` para validar los health checks de la URL publica de Vercel.
+- Guia `docs/project/HEALTH_CHECKS.md` con endpoints, respuestas esperadas y criterio de aceptacion.
+
 ## [0.27.41] - 2026-07-15
 
 ### Fixed

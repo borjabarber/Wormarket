@@ -119,7 +119,7 @@ Estado: En progreso
 - [x] Desplegar Wormarket en Vercel
 - [x] Cargar datos de demostracion controlados
 - [x] Configurar GitHub Actions final
-- [ ] Configurar health checks
+- [x] Configurar health checks
 - [ ] Probar flujo completo en URL publica
 - [ ] Documentar despliegue
 - [ ] Cerrar version 1.0.0
