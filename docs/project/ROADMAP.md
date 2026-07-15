@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.38`.
+Version actual: `0.27.39`.
 
 Fase activa: Despliegue.
 

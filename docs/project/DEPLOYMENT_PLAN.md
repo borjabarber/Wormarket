@@ -106,6 +106,7 @@ Health check: https://wormarket.vercel.app/api/health
 ```
 
 `GET /api/health` responde `200 OK`. El catalogo usa los datos demo controlados cargados en Supabase.
+Las rutas profundas de API se enrutan a NestJS mediante `rewrites` en `vercel.json`, incluyendo `GET /api/listings/:slug` para el detalle publico de anuncios.
 
 ## Proyecto Supabase
 

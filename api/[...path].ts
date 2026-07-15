@@ -6,8 +6,18 @@ type ServerlessHandler = (request: IncomingMessage, response: ServerResponse) =>
 
 let cachedHandler: Promise<ServerlessHandler> | undefined;
 
-function stripApiPrefix(request: IncomingMessage): void {
+export function stripApiPrefix(request: IncomingMessage): void {
   const originalUrl = request.url ?? '/';
+  const parsedUrl = new URL(originalUrl, 'http://wormarket.local');
+  const rewrittenPath = parsedUrl.searchParams.get('path');
+
+  if (parsedUrl.pathname === '/api' && rewrittenPath) {
+    parsedUrl.searchParams.delete('path');
+
+    const queryString = parsedUrl.searchParams.toString();
+    request.url = `/${rewrittenPath.replace(/^\/+/u, '')}${queryString ? `?${queryString}` : ''}`;
+    return;
+  }
 
   if (originalUrl === '/api') {
     request.url = '/';

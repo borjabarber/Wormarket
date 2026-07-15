@@ -20,6 +20,85 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Corregir detalle de anuncios en la URL publica.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- El usuario reporto que los anuncios aparecian en la pagina principal, pero al abrir un anuncio se mostraba `Anuncio no encontrado`.
+- Se trato como correccion urgente de despliegue antes de avanzar a `Configurar GitHub Actions final`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/frontend/SKILL.md`, `skills/backend/SKILL.md`, `skills/testing/SKILL.md` y `skills/security/SKILL.md`.
+- Se valido que `https://wormarket.vercel.app/listings/farol-que-ilumina-portales-cerrados` carga la ruta frontend de detalle.
+- Se detecto que `https://wormarket.vercel.app/api/listings/farol-que-ilumina-portales-cerrados` devolvia 404 de Vercel, no un error JSON de NestJS.
+- Se confirmo que el bug estaba en el routing serverless: `/api/listings` entraba en la API, pero las rutas profundas `/api/.../...` no llegaban al catch-all.
+- Se anadio `api/index.ts` como entrada estable de la funcion serverless.
+- Se anadio una rewrite en `vercel.json` de `/api/:path*` hacia `/api?path=:path*`.
+- Se ajusto `api/[...path].ts` para reconstruir la ruta original desde el parametro `path` antes de delegar en NestJS.
+- Se actualizo la version del proyecto de `0.27.38` a `0.27.39` segun `VERSIONING.md`, por correccion de despliegue publico.
+
+### Archivos creados
+
+- `api/index.ts`
+
+### Archivos tocados
+
+- `README.md`
+- `api/[...path].ts`
+- `api/index.ts`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+- `vercel.json`
+
+### Skills revisadas
+
+- `skills/frontend/SKILL.md`
+- `skills/backend/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/frontend/SKILL.md`: usada para confirmar que la ruta visible del detalle carga y que el error venia de la llamada cliente.
+- `skills/backend/SKILL.md`: usada para revisar controlador de listings y mantener la delegacion a NestJS.
+- `skills/testing/SKILL.md`: usada para validar typecheck, build y rutas publicas afectadas.
+- `skills/security/SKILL.md`: usada para evitar exponer secretos y mantener el rewrite limitado al prefijo `/api`.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada porque los datos existen y el fallo no estaba en Supabase.
+- `skills/deployment/SKILL.md`: descartada como principal porque no se cambio proveedor ni configuracion externa, aunque la correccion afecta a Vercel.
+
+### Comprobaciones
+
+- `curl -i https://wormarket.vercel.app/api/listings/farol-que-ilumina-portales-cerrados`: reprodujo el fallo con HTTP 404 de Vercel antes del fix.
+- `curl -i https://wormarket.vercel.app/listings/farol-que-ilumina-portales-cerrados`: correcto; la ruta frontend existe.
+- `npm run typecheck`: correcto.
+- `npm run build:web`: correcto.
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `curl -i https://wormarket.vercel.app/api/listings/farol-que-ilumina-portales-cerrados`: correcto tras el despliegue; HTTP 200 y JSON del anuncio.
+
+### Resultado
+
+La correccion queda desplegada y validada: Vercel enruta las rutas profundas de `/api` hacia NestJS y el endpoint usado por el detalle de anuncios ya devuelve el anuncio correcto desde la URL publica.
+
+### Riesgos o pendientes
+
+- Tras el deploy, conviene probar detalle, favorito y oferta porque usan rutas API profundas.
+
+## 2026-07-15
+
+### Tarea
+
 Cargar datos de demostracion controlados.
 
 ### Fase activa

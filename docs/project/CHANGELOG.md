@@ -4,6 +4,12 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.39] - 2026-07-15
+
+### Fixed
+
+- Rutas API profundas en Vercel corregidas mediante rewrite `/api/:path*`, permitiendo que `/api/listings/:slug` llegue a NestJS y el detalle de anuncios cargue desde la web publica.
+
 ## [0.27.38] - 2026-07-15
 
 ### Added
