@@ -109,7 +109,7 @@ Estado: En progreso
 - [x] Subir monorepo local a GitHub
 - [x] Preparar variables de entorno de produccion
 - [x] Crear proyecto Supabase
-- [ ] Configurar PostgreSQL Supabase
+- [x] Configurar PostgreSQL Supabase
 - [ ] Ejecutar migraciones Prisma en Supabase
 - [ ] Adaptar imagenes a Supabase Storage
 - [ ] Revisar estrategia realtime compatible con Vercel

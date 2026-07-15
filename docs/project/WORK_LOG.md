@@ -20,6 +20,87 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Configurar PostgreSQL Supabase.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Configurar PostgreSQL Supabase`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/database/SKILL.md` y `skills/security/SKILL.md`.
+- Se comprobo que Prisma 7 no permite `url` ni `directUrl` dentro de `schema.prisma`; la configuracion de URLs debe vivir en `prisma.config.ts`.
+- Se configuro `apps/api/prisma.config.ts` para usar `DIRECT_URL` en comandos Prisma cuando exista y caer a `DATABASE_URL` en local.
+- Se anadio `DIRECT_URL` a `.env.example` como fallback local no secreto.
+- Se actualizo `.env.production.example` para separar `DATABASE_URL` de runtime y `DIRECT_URL` de migraciones.
+- Se creo `docs/project/SUPABASE_POSTGRES.md` con instrucciones para copiar las cadenas desde Supabase sin pegarlas en el chat ni versionarlas.
+- Se actualizaron `PRODUCTION_ENV.md`, `DEPLOYMENT_PLAN.md` y `DATABASE.md` para documentar el flujo PostgreSQL Supabase.
+- Se marco `Configurar PostgreSQL Supabase` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Ejecutar migraciones Prisma en Supabase`.
+- Se actualizo la version del proyecto de `0.27.28` a `0.27.29` segun `VERSIONING.md`, por hito tecnico/documental de despliegue.
+
+### Archivos creados
+
+- `docs/project/SUPABASE_POSTGRES.md`
+
+### Archivos tocados
+
+- `.env.example`
+- `.env.production.example`
+- `README.md`
+- `apps/api/prisma.config.ts`
+- `docs/architecture/DATABASE.md`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/PRODUCTION_ENV.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/database/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para mantener el flujo de despliegue gratuito GitHub + Vercel + Supabase.
+- `skills/database/SKILL.md`: usada para preparar Prisma/Supabase sin ejecutar migraciones todavia.
+- `skills/security/SKILL.md`: usada para mantener las cadenas de conexion fuera del repositorio y documentar secretos.
+
+### Skills descartadas
+
+- `skills/backend/SKILL.md`: descartada porque no se modificaron modulos, controladores ni casos de uso.
+- `skills/testing/SKILL.md`: descartada como principal porque el cambio no introduce comportamiento de producto, aunque se ejecutaron comprobaciones tecnicas.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque todavia no se conecta Vercel.
+
+### Comprobaciones
+
+- `npx prisma validate` desde `apps/api`: fallo inicialmente al probar `url` y `directUrl` en `schema.prisma`, porque Prisma 7 ya no los soporta ahi; se corrigio moviendo el flujo a `prisma.config.ts`.
+- `npx prisma validate` desde `apps/api`: correcto tras la correccion.
+- `npm run db:generate`: correcto.
+- `git check-ignore -v .env`: correcto; `.env` esta ignorado.
+
+### Resultado
+
+PostgreSQL Supabase queda configurado a nivel de proyecto: `DATABASE_URL` queda reservado para runtime y `DIRECT_URL` para migraciones Prisma mediante `prisma.config.ts`, sin guardar secretos reales.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Ejecutar migraciones Prisma en Supabase`.
+- Antes de migrar, el usuario tendra que copiar las cadenas reales desde Supabase a un entorno local seguro sin pegarlas en el chat.
+- Todavia no se ha ejecutado ninguna migracion ni seed contra Supabase.
+
+## 2026-07-15
+
+### Tarea
+
 Crear proyecto Supabase.
 
 ### Fase activa

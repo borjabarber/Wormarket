@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.28`.
+Version actual: `0.27.29`.
 
 Fase activa: Despliegue.
 
@@ -25,7 +25,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Configurar PostgreSQL Supabase.
+- Ejecutar migraciones Prisma en Supabase.
 
 ## Fase de despliegue
 

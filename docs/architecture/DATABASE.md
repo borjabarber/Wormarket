@@ -18,6 +18,7 @@ La contrasena `wormarket` es solo una credencial local de desarrollo y coincide 
 
 ```env
 DATABASE_URL=postgresql://wormarket:wormarket@localhost:5432/wormarket
+DIRECT_URL=postgresql://wormarket:wormarket@localhost:5432/wormarket
 ```
 
 ## Comandos
@@ -35,13 +36,23 @@ Prisma queda configurado en el workspace `@wormarket/api`.
 - Esquema: `apps/api/prisma/schema.prisma`
 - Configuracion Prisma: `apps/api/prisma.config.ts`
 - Cliente generado: `apps/api/src/generated/prisma`
-- URL de base de datos: `DATABASE_URL`
+- URL de runtime: `DATABASE_URL`
+- URL directa para migraciones: `DIRECT_URL`, con fallback local a `DATABASE_URL` en `apps/api/prisma.config.ts`
 
 Para generar el cliente local:
 
 ```bash
 npm run db:generate
 ```
+
+## Supabase PostgreSQL
+
+Durante despliegue, Supabase PostgreSQL usara dos cadenas:
+
+- `DATABASE_URL`: cadena de runtime para la aplicacion.
+- `DIRECT_URL`: cadena directa para migraciones Prisma.
+
+Ambas son secretos y no deben guardarse en Git. En desarrollo local, `.env.example` deja `DIRECT_URL` apuntando a PostgreSQL local para que los comandos actuales sigan funcionando sin cambios.
 
 ## Migraciones
 

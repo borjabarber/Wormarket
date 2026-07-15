@@ -35,7 +35,7 @@ No crear ni subir:
 
 | Variable | Uso previsto | Donde se configurara | Secreta | Nota |
 | --- | --- | --- | --- | --- |
-| `DIRECT_URL` | Conexion directa para migraciones Prisma/Supabase | Entorno local o Vercel segun estrategia | Si | Aun no esta cableada en `schema.prisma` |
+| `DIRECT_URL` | Conexion directa para migraciones Prisma/Supabase | Entorno local seguro para migraciones; Vercel solo si se necesita | Si | Cableada en `prisma.config.ts` porque Prisma 7 ya no permite URLs en `schema.prisma` |
 | `SUPABASE_URL` | URL publica del proyecto Supabase | Vercel | No | Necesaria para Supabase Storage |
 | `SUPABASE_SERVICE_ROLE_KEY` | Acceso servidor a Supabase Storage | Vercel | Si | Nunca exponer en cliente |
 | `SUPABASE_STORAGE_BUCKET` | Bucket de imagenes | Vercel | No | Valor previsto: `wormarket-listing-images` |
@@ -46,8 +46,8 @@ Todavia no podemos rellenar:
 
 - `NEXT_PUBLIC_API_URL`: depende de la URL final de Vercel y de como adaptemos la API a serverless.
 - `FRONTEND_URL`: depende de la URL final de Vercel.
-- `DATABASE_URL`: depende de crear el proyecto Supabase.
-- `DIRECT_URL`: depende de la estrategia exacta de migraciones con Supabase.
+- `DATABASE_URL`: se copia desde Supabase usando la cadena pooler/runtime.
+- `DIRECT_URL`: se copia desde Supabase usando la cadena directa para migraciones Prisma.
 - `SUPABASE_URL`: depende del proyecto Supabase.
 - `SUPABASE_SERVICE_ROLE_KEY`: depende del proyecto Supabase.
 
@@ -74,7 +74,8 @@ Cuando llegue la tarea de configurar Vercel, se anadiran estas variables en el p
 NODE_ENV=production
 NEXT_PUBLIC_API_URL=https://your-vercel-project.vercel.app/api
 FRONTEND_URL=https://your-vercel-project.vercel.app
-DATABASE_URL=<copiar desde Supabase>
+DATABASE_URL=<copiar desde Supabase, modo pooler/runtime>
+DIRECT_URL=<copiar desde Supabase, modo direct/migrations>
 JWT_ACCESS_SECRET=<generado localmente>
 JWT_REFRESH_SECRET=<generado localmente>
 STORAGE_DRIVER=supabase
@@ -83,12 +84,12 @@ SUPABASE_SERVICE_ROLE_KEY=<copiar desde Supabase>
 SUPABASE_STORAGE_BUCKET=wormarket-listing-images
 ```
 
-`DIRECT_URL` se anadira cuando se configure el flujo de migraciones con Supabase si Prisma lo requiere.
+`DIRECT_URL` debe mantenerse como secreto. Se usara para ejecutar migraciones Prisma de forma controlada desde un entorno local seguro o desde un job de despliegue si se define mas adelante.
 
 ## Riesgos conocidos
 
 - `STORAGE_DRIVER=supabase` todavia no funcionara hasta implementar el adaptador Supabase Storage.
-- `DIRECT_URL` todavia no se usa en el schema actual de Prisma.
+- Las migraciones contra Supabase no deben ejecutarse hasta la tarea `Ejecutar migraciones Prisma en Supabase` y solo despues de confirmar que las cadenas apuntan al proyecto correcto.
 - `NEXT_PUBLIC_API_URL` puede cambiar si finalmente la API vive bajo la misma URL de Vercel o se adapta con otra ruta.
 - `SUPABASE_SERVICE_ROLE_KEY` es una clave de servidor y nunca debe aparecer en codigo cliente ni en variables `NEXT_PUBLIC_*`.
 
@@ -98,4 +99,5 @@ SUPABASE_STORAGE_BUCKET=wormarket-listing-images
 - [x] Variables actuales y futuras separadas.
 - [x] Secretos identificados.
 - [x] Pasos externos pendientes documentados.
+- [x] `DIRECT_URL` preparado para migraciones Prisma/Supabase.
 - [x] Supabase Storage marcado como tarea posterior.

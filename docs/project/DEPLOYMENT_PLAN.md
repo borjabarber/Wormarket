@@ -91,6 +91,13 @@ Plan: Free
 
 No se han guardado contrasenas, cadenas de conexion ni claves de Supabase en el repositorio. La configuracion de PostgreSQL se realizara en la siguiente tarea copiando los valores desde el panel de Supabase a entornos locales o Vercel, nunca a archivos versionados.
 
+PostgreSQL Supabase queda configurado en el codigo para trabajar con dos variables:
+
+- `DATABASE_URL`: conexion de runtime de la aplicacion.
+- `DIRECT_URL`: conexion directa para migraciones Prisma.
+
+La siguiente tarea ejecutara migraciones contra Supabase solo despues de confirmar manualmente que ambas cadenas apuntan al proyecto correcto.
+
 ## Variables de entorno previstas
 
 No guardar valores reales en Git. Solo documentar nombres.
@@ -124,7 +131,7 @@ Variables publicas:
 
 Notas:
 
-- `DIRECT_URL` queda reservado para el flujo Supabase/Prisma y se cableara si la configuracion de PostgreSQL lo requiere.
+- `DIRECT_URL` queda cableado en Prisma para el flujo Supabase/Prisma y se usara en migraciones controladas.
 - `STORAGE_DRIVER=supabase` queda preparado, pero el adaptador Supabase Storage se implementara en una tarea posterior.
 
 ## Tareas externas del usuario

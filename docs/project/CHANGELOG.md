@@ -4,6 +4,17 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.29] - 2026-07-15
+
+### Added
+
+- Guia `docs/project/SUPABASE_POSTGRES.md` para obtener y usar las cadenas PostgreSQL de Supabase sin versionar secretos.
+
+### Changed
+
+- Prisma preparado para Supabase PostgreSQL con `DATABASE_URL` para runtime y `DIRECT_URL` para migraciones.
+- Documentacion de despliegue, base de datos y variables actualizada para dejar la siguiente tarea centrada en migrar Prisma contra Supabase.
+
 ## [0.27.28] - 2026-07-15
 
 ### Changed
