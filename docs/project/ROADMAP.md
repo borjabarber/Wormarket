@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.29`.
+Version actual: `0.27.30`.
 
 Fase activa: Despliegue.
 
@@ -25,7 +25,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Ejecutar migraciones Prisma en Supabase.
+- Adaptar imagenes a Supabase Storage.
 
 ## Fase de despliegue
 

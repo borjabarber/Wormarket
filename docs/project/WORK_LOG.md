@@ -20,6 +20,95 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Ejecutar migraciones Prisma en Supabase.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Ejecutar migraciones Prisma en Supabase`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/database/SKILL.md`, `skills/security/SKILL.md` y `skills/testing/SKILL.md`.
+- Se anadio el script `db:migrate:deploy` para usar `prisma migrate deploy` en lugar de `prisma migrate dev` contra entornos cloud.
+- Se anadio el script seguro `db:migrate:supabase`, que lee `.env.supabase.local`, valida que las URLs apunten a Supabase y ejecuta `prisma migrate deploy` sin imprimir secretos.
+- Se anadio `.env.supabase.local.example` como plantilla sin secretos reales.
+- Se anadio `db:supabase:check` para validar conexion Supabase con `SELECT 1` sin imprimir contrasenas.
+- Se confirmo que `.env.supabase.local` existe localmente y esta ignorado por Git mediante `.env*.local`.
+- El primer intento de conexion fallo con `EACCES` por restricciones de red del sandbox.
+- Tras ejecutar con permiso de red, `DATABASE_URL` y `DIRECT_URL` respondieron correctamente a `SELECT 1`.
+- Se ejecuto `npm run db:migrate:supabase` contra Supabase PostgreSQL y se aplicaron correctamente las 11 migraciones existentes.
+- Se corrigio el runner para evitar el warning de Node por `shell: true` en Windows.
+- Se marco `Ejecutar migraciones Prisma en Supabase` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Adaptar imagenes a Supabase Storage`.
+- Se actualizo la version del proyecto de `0.27.29` a `0.27.30` segun `VERSIONING.md`, por hito real de despliegue cloud.
+
+### Archivos creados
+
+- `.env.supabase.local.example`
+- `scripts/supabase-connection-check.mjs`
+- `scripts/supabase-migrate-deploy.mjs`
+
+### Archivos tocados
+
+- `.gitignore`
+- `README.md`
+- `apps/api/package.json`
+- `package.json`
+- `package-lock.json`
+- `docs/project/SUPABASE_POSTGRES.md`
+- `docs/project/TASKS.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/database/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/testing/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para ejecutar la tarea de despliegue controlado con Supabase.
+- `skills/database/SKILL.md`: usada para aplicar migraciones Prisma existentes con `migrate deploy`.
+- `skills/security/SKILL.md`: usada para mantener `.env.supabase.local` fuera de Git y evitar imprimir secretos.
+- `skills/testing/SKILL.md`: usada para validar conexion, script seguro y estado de migraciones.
+
+### Skills descartadas
+
+- `skills/backend/SKILL.md`: descartada porque no se cambiaron modulos ni endpoints.
+- `skills/frontend/SKILL.md`: descartada porque no hubo cambios de UI.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque todavia no se conecta Vercel.
+
+### Comprobaciones
+
+- `git status --short --branch`: correcto antes de migrar; solo cambios de scripts/documentacion pendientes.
+- `dir .env.supabase.local`: correcto; el archivo local existe.
+- `git check-ignore -v .env.supabase.local`: correcto; `.env*.local` lo ignora.
+- `npm run db:migrate:supabase`: fallo seguro sin `.env.supabase.local` antes de que el usuario lo rellenara.
+- `npm run db:migrate:deploy --workspace=@wormarket/api -- --help`: correcto; confirma que `migrate deploy` lee `prisma.config.ts`.
+- `npm run db:supabase:check`: fallo con `EACCES` dentro del sandbox.
+- `npm run db:supabase:check` con permiso de red: correcto; `DATABASE_URL` y `DIRECT_URL` responden a `SELECT 1`.
+- `npm run db:migrate:supabase` con permiso de red: correcto; 11 migraciones aplicadas.
+
+### Resultado
+
+Supabase PostgreSQL ya tiene aplicado el schema completo del MVP local mediante Prisma Migrate. No se cargo seed ni imagenes en esta tarea.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Adaptar imagenes a Supabase Storage`.
+- La base Supabase esta migrada pero sin datos demo cargados.
+- `.env.supabase.local` existe en el equipo local y debe seguir fuera de Git.
+
+## 2026-07-15
+
+### Tarea
+
 Configurar PostgreSQL Supabase.
 
 ### Fase activa

@@ -4,6 +4,19 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.30] - 2026-07-15
+
+### Added
+
+- Script seguro `db:migrate:supabase` para ejecutar `prisma migrate deploy` contra Supabase leyendo `.env.supabase.local`.
+- Script `db:supabase:check` para validar conexion Supabase sin imprimir secretos.
+- Plantilla `.env.supabase.local.example` para configurar localmente `DATABASE_URL` y `DIRECT_URL` sin versionar valores reales.
+
+### Changed
+
+- Migraciones Prisma aplicadas correctamente en Supabase PostgreSQL: 11 migraciones del MVP local.
+- Documentacion actualizada con el flujo recomendado de migracion Supabase.
+
 ## [0.27.29] - 2026-07-15
 
 ### Added

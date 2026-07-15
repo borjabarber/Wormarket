@@ -45,14 +45,20 @@ Si Supabase muestra varias opciones, usa:
 
 ## Uso local seguro
 
-Para probar conexion sin versionar secretos, crea o edita tu `.env` local ignorado por Git:
+Para probar conexion sin versionar secretos, copia la plantilla local:
+
+```bash
+copy .env.supabase.local.example .env.supabase.local
+```
+
+Despues edita `.env.supabase.local` y rellena:
 
 ```env
 DATABASE_URL=<copiar desde Supabase>
 DIRECT_URL=<copiar desde Supabase>
 ```
 
-No reemplaces `.env.example` ni `.env.production.example` con valores reales.
+No reemplaces `.env.example` ni `.env.production.example` con valores reales. `.env.supabase.local` esta ignorado por Git.
 
 ## Prisma 7
 
@@ -76,4 +82,38 @@ Antes de ejecutar migraciones contra Supabase:
 - Ejecuta `git status --short` y revisa que `.env` no aparece.
 - Ejecuta `npm run db:generate`.
 
-Las migraciones se ejecutaran en la tarea siguiente: `Ejecutar migraciones Prisma en Supabase`.
+## Ejecutar migraciones
+
+El comando preparado para Supabase es:
+
+```bash
+npm run db:migrate:supabase
+```
+
+Este comando lee `.env.supabase.local`, valida que `DATABASE_URL` y `DIRECT_URL` existan y que apunten a Supabase, y despues ejecuta `prisma migrate deploy` en `apps/api`.
+
+Tambien existe el comando base:
+
+```bash
+npm run db:migrate:deploy
+```
+
+Usa `db:migrate:deploy` solo si ya has cargado `DATABASE_URL` y `DIRECT_URL` en el entorno del proceso. Para evitar errores y secretos en el historial del terminal, el flujo recomendado es `db:migrate:supabase`.
+
+## Estado de migraciones
+
+El 2026-07-15 se aplicaron correctamente en Supabase PostgreSQL las 11 migraciones existentes del MVP local:
+
+- `20260709102010_add_dimensions`
+- `20260709103515_add_users`
+- `20260709104711_add_identity_accounts`
+- `20260709111125_add_listings`
+- `20260709112635_add_favorites`
+- `20260709114603_add_offers`
+- `20260709120133_add_transactions`
+- `20260709125008_add_conversations`
+- `20260709130755_add_reviews`
+- `20260709132453_add_notifications`
+- `20260709134105_add_moderation`
+
+No se cargo seed de demostracion en esta tarea.

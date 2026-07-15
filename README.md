@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.29`.
+- Version actual: `0.27.30`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -197,6 +197,8 @@ npm run test:integration:local
 npm run db:generate
 npm run db:migrate
 npm run db:migrate:create -- --name migration_name
+npm run db:migrate:deploy
+npm run db:migrate:supabase
 npm run db:migrate:status
 npm run db:seed
 npm run db:reset
@@ -238,6 +240,8 @@ Comandos de migraciones disponibles:
 ```bash
 npm run db:migrate
 npm run db:migrate:create -- --name migration_name
+npm run db:migrate:deploy
+npm run db:migrate:supabase
 npm run db:migrate:status
 npm run db:reset
 npm run db:migrate --workspace=@wormarket/api

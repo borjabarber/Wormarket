@@ -110,7 +110,7 @@ Estado: En progreso
 - [x] Preparar variables de entorno de produccion
 - [x] Crear proyecto Supabase
 - [x] Configurar PostgreSQL Supabase
-- [ ] Ejecutar migraciones Prisma en Supabase
+- [x] Ejecutar migraciones Prisma en Supabase
 - [ ] Adaptar imagenes a Supabase Storage
 - [ ] Revisar estrategia realtime compatible con Vercel
 - [ ] Preparar API para Vercel/serverless
