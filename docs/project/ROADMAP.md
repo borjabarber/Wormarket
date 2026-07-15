@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.39`.
+Version actual: `0.27.40`.
 
 Fase activa: Despliegue.
 
@@ -13,7 +13,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 - Preparacion documental y nombre oficial Wormarket.
 - Monorepo con npm workspaces.
 - Frontend Next.js y backend NestJS.
-- TypeScript estricto, ESLint, Prettier, Vitest, Supertest y CI inicial.
+- TypeScript estricto, ESLint, Prettier, Vitest, Supertest y CI final gratuita.
 - PostgreSQL local con Docker, Prisma, migraciones y seed.
 - Modulos backend: Dimensions, Users, Identity, Listings, Favorites, Offers, Transactions, Conversations, Reviews, Notifications, Moderation y Storage.
 - Pantallas frontend: home/explorador, autenticacion, detalle, creacion, edicion, favoritos, ofertas, chat, perfil, transacciones, valoraciones, notificaciones y moderacion.
@@ -26,7 +26,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Configurar GitHub Actions final.
+- Configurar health checks.
 
 ## Fase de despliegue
 
@@ -43,6 +43,7 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Configurar variables de entorno en Vercel. Completado: variables importadas desde `.env.vercel.local` local ignorado por Git, sin registrar secretos.
 - Desplegar Wormarket en Vercel. Completado: frontend publico carga y `GET /api/health` responde 200.
 - Cargar datos demo controlados. Completado: Supabase contiene los usuarios demo, dimensiones, anuncios y datos relacionados del seed idempotente.
+- Configurar GitHub Actions final. Completado: CI gratuita con PostgreSQL local, migraciones, seed, calidad, tests, build y audit.
 - Configurar variables, CORS, cookies seguras y health checks.
 - Probar flujo completo en URL publica.
 - Documentar despliegue.

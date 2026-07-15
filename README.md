@@ -47,7 +47,7 @@ Calidad, entorno y herramientas:
 - ESLint.
 - Prettier.
 - Docker y Docker Compose.
-- GitHub Actions para CI inicial.
+- GitHub Actions para CI final gratuita.
 - Scripts locales para seed, migraciones, smoke test y flujo e2e.
 
 ## Instalacion y ejecucion
@@ -396,17 +396,19 @@ npm run test:integration:local
 
 El script comprueba `GET /health`, la ruta web `/auth`, lecturas publicas de anuncios, dimensiones, perfiles y valoraciones, login demo de Identity, lecturas privadas de favoritos, ofertas, transacciones, notificaciones, conversaciones y cola de moderacion. Usa por defecto `http://localhost:3001` para API y `http://localhost:3000` para web; pueden cambiarse con `WORMARKET_API_URL` o `NEXT_PUBLIC_API_URL`, `WORMARKET_WEB_URL` y `WORMARKET_DEMO_PASSWORD`.
 
-Esta comprobacion no forma parte de la CI inicial porque depende de servicios locales en ejecucion y de una base PostgreSQL con seed.
+Esta comprobacion se mantiene como smoke manual local porque depende de levantar servidores web y API. La CI final si levanta PostgreSQL local, aplica migraciones y carga el seed demo antes de ejecutar las comprobaciones de calidad.
 
-## CI inicial
+## CI final
 
-El workflow inicial de GitHub Actions vive en `.github/workflows/ci.yml`.
+El workflow final de GitHub Actions vive en `.github/workflows/ci.yml` y usa solo recursos gratuitos del runner: Node.js, npm y un servicio PostgreSQL local de Docker. No despliega, no usa secretos de Supabase y no escribe en servicios cloud.
 
 Ejecuta:
 
 ```bash
 npm ci
 npm run db:generate
+npm run db:migrate:deploy
+npm run db:seed
 npm run format
 npm run lint
 npm run typecheck
@@ -415,7 +417,7 @@ npm run build
 npm audit --audit-level=high
 ```
 
-La CI no despliega, no configura servicios cloud y no ejecuta migraciones contra bases de datos de produccion. Los servicios de PostgreSQL para pruebas de integracion se anadiran cuando existan repositorios o casos que dependan de base de datos.
+La CI no despliega, no configura servicios cloud y no ejecuta migraciones contra bases de datos de produccion. Las variables JWT del workflow son valores ficticios de CI, no secretos reales.
 
 ## Frontend Next.js
 

@@ -15,17 +15,42 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   quality:
-    name: Quality checks
+    name: Quality and database checks
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: wormarket
+          POSTGRES_PASSWORD: wormarket
+          POSTGRES_USER: wormarket
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U wormarket -d wormarket"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     env:
+      CI: true
       NODE_ENV: test
       DATABASE_URL: postgresql://wormarket:wormarket@localhost:5432/wormarket
+      DIRECT_URL: postgresql://wormarket:wormarket@localhost:5432/wormarket
       FRONTEND_URL: http://localhost:3000
+      JWT_ACCESS_SECRET: ci-access-secret-for-wormarket-only
+      JWT_REFRESH_SECRET: ci-refresh-secret-for-wormarket-only
+      LOCAL_UPLOAD_PATH: uploads-ci
       NEXT_PUBLIC_API_URL: http://localhost:3001
+      NEXT_PUBLIC_REALTIME_MODE: polling
+      STORAGE_DRIVER: local
 
     steps:
       - name: Checkout repository
@@ -42,6 +67,12 @@ jobs:
 
       - name: Generate Prisma client
         run: npm run db:generate
+
+      - name: Apply database migrations
+        run: npm run db:migrate:deploy
+
+      - name: Seed demo data
+        run: npm run db:seed
 
       - name: Check formatting
         run: npm run format

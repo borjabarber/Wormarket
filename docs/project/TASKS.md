@@ -118,7 +118,7 @@ Estado: En progreso
 - [x] Configurar variables de entorno en Vercel
 - [x] Desplegar Wormarket en Vercel
 - [x] Cargar datos de demostracion controlados
-- [ ] Configurar GitHub Actions final
+- [x] Configurar GitHub Actions final
 - [ ] Configurar health checks
 - [ ] Probar flujo completo en URL publica
 - [ ] Documentar despliegue

@@ -4,6 +4,14 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.40] - 2026-07-15
+
+### Changed
+
+- GitHub Actions final configurado con PostgreSQL local gratuito, migraciones Prisma, seed demo, formato, lint, typecheck, tests, build y audit de vulnerabilidades altas o criticas.
+- Documentacion actualizada para reemplazar la CI inicial por una CI final sin despliegues automaticos ni secretos de Supabase.
+- Tarea `Configurar GitHub Actions final` marcada como completada.
+
 ## [0.27.39] - 2026-07-15
 
 ### Fixed

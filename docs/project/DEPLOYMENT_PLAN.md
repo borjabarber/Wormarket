@@ -194,8 +194,9 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 11. Configurar variables de entorno. Completado desde `.env.vercel.local` local ignorado por Git.
 12. Desplegar. Completado: frontend publico y health check API operativos.
 13. Cargar seed demo controlado. Completado con `db:seed:supabase`.
-14. Probar flujo completo en URL publica.
-15. Documentar despliegue.
+14. Configurar GitHub Actions final. Completado con CI gratuita, PostgreSQL local, migraciones, seed, calidad, tests, build y audit.
+15. Probar flujo completo en URL publica.
+16. Documentar despliegue.
 
 ## Comprobaciones antes de desplegar
 

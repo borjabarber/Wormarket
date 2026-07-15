@@ -20,6 +20,86 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Configurar GitHub Actions final.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Configurar GitHub Actions final`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/testing/SKILL.md` y `skills/security/SKILL.md`.
+- Se reviso el workflow existente `.github/workflows/ci.yml`, que aun era una CI inicial sin servicio PostgreSQL.
+- Se confirmo que la configuracion final debe mantener coste `0`, no desplegar, no usar secretos de Supabase y no ejecutar migraciones contra servicios cloud.
+- Se anadio `permissions: contents: read` para limitar permisos del workflow.
+- Se configuro un servicio PostgreSQL local `postgres:16-alpine` dentro del runner de GitHub Actions.
+- Se anadieron variables ficticias de CI para `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `DATABASE_URL`, `DIRECT_URL`, storage local y realtime polling.
+- Se incorporaron los pasos `npm run db:migrate:deploy` y `npm run db:seed` antes de formato, lint, typecheck, tests y build.
+- Se mantuvo `npm audit --audit-level=high` para bloquear vulnerabilidades altas o criticas sin fallar por moderadas.
+- Se actualizo el README para reemplazar `CI inicial` por `CI final` y aclarar que no despliega ni usa secretos reales.
+- Se marco `Configurar GitHub Actions final` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Configurar health checks`.
+- Se actualizo la version del proyecto de `0.27.39` a `0.27.40` segun `VERSIONING.md`, por cierre de CI final gratuita.
+
+### Archivos creados
+
+- Ninguno.
+
+### Archivos tocados
+
+- `.github/workflows/ci.yml`
+- `README.md`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para mantener la CI dentro del plan gratuito GitHub + Vercel + Supabase y sin despliegues automaticos.
+- `skills/testing/SKILL.md`: usada para seleccionar comprobaciones finales reproducibles: migraciones, seed, formato, lint, typecheck, tests, build y audit.
+- `skills/security/SKILL.md`: usada para evitar secretos reales en GitHub Actions y limitar permisos del workflow.
+
+### Skills descartadas
+
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque no se configuro despliegue desde Actions ni se tocaron tokens de Vercel.
+- `skills/database/SKILL.md`: descartada como principal porque no hubo cambios de schema ni migraciones nuevas; solo se ejecutaran migraciones existentes en PostgreSQL local de CI.
+
+### Comprobaciones
+
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run test`: correcto; 52 archivos y 105 tests API, 23 archivos y 65 tests web, paquetes compartidos sin tests pendientes.
+- `npm run build`: correcto; build API y build web completadas.
+- `npm audit --audit-level=high`: correcto; informa 5 vulnerabilidades moderadas y no hay altas o criticas. No se aplica `npm audit fix --force` porque propone cambios rompientes.
+
+### Resultado
+
+GitHub Actions queda configurado como CI final gratuita para Wormarket, con base PostgreSQL local en el runner y sin acceso a servicios de produccion.
+
+### Riesgos o pendientes
+
+- El workflow final con PostgreSQL local, migraciones y seed se validara realmente en GitHub al subir el commit.
+- Persisten 5 vulnerabilidades moderadas reportadas por `npm audit`, sin bloqueo por el umbral alto/critico de CI.
+- La siguiente tarea es `Configurar health checks`.
+
+## 2026-07-15
+
+### Tarea
+
 Corregir detalle de anuncios en la URL publica.
 
 ### Fase activa
