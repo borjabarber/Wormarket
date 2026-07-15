@@ -25,4 +25,4 @@ Thumbs.db
 .vercel/
 uploads/
 tmp/
-{console.error(e)
+[{]console.error(e)

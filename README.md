@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.26`.
+- Version actual: `0.27.27`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -167,6 +167,12 @@ La lista completa esta en `docs/project/DEMO_USERS.md`.
 ## Desarrollo local detallado
 
 La guia paso a paso de demostracion esta en `docs/project/LOCAL_DEMO_GUIDE.md`.
+
+## Despliegue
+
+El plan de despliegue gratuito esta en `docs/project/DEPLOYMENT_PLAN.md`.
+
+Las variables de entorno de produccion estan preparadas en `docs/project/PRODUCTION_ENV.md` y `.env.production.example`. No contienen secretos reales.
 
 ## Scripts raiz
 

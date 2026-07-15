@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.26`.
+Version actual: `0.27.27`.
 
 Fase activa: Despliegue.
 
@@ -25,7 +25,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Preparar variables de entorno de produccion.
+- Crear proyecto Supabase.
 
 ## Fase de despliegue
 

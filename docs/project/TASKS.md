@@ -107,7 +107,7 @@ Estado: En progreso
 - [x] Revisar y evaluar la skill de despliegue
 - [x] Crear repositorio GitHub vacio
 - [x] Subir monorepo local a GitHub
-- [ ] Preparar variables de entorno de produccion
+- [x] Preparar variables de entorno de produccion
 - [ ] Crear proyecto Supabase
 - [ ] Configurar PostgreSQL Supabase
 - [ ] Ejecutar migraciones Prisma en Supabase

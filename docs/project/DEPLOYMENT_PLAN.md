@@ -83,6 +83,8 @@ Commits iniciales:
 
 No guardar valores reales en Git. Solo documentar nombres.
 
+La referencia detallada vive en `docs/project/PRODUCTION_ENV.md` y la plantilla versionada en `.env.production.example`.
+
 ```env
 DATABASE_URL=
 DIRECT_URL=
@@ -107,6 +109,11 @@ Secretos:
 Variables publicas:
 
 - `NEXT_PUBLIC_API_URL`
+
+Notas:
+
+- `DIRECT_URL` queda reservado para el flujo Supabase/Prisma y se cableara si la configuracion de PostgreSQL lo requiere.
+- `STORAGE_DRIVER=supabase` queda preparado, pero el adaptador Supabase Storage se implementara en una tarea posterior.
 
 ## Tareas externas del usuario
 

@@ -20,6 +20,85 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Preparar variables de entorno de produccion.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Preparar variables de entorno de produccion`.
+- Se revisaron `skills/deployment/SKILL.md` y `skills/security/SKILL.md`.
+- Se inspeccionaron las variables realmente usadas por el codigo en frontend, backend, Prisma, Storage y scripts locales.
+- Se confirmo que hoy el codigo usa `NEXT_PUBLIC_API_URL`, `DATABASE_URL`, `FRONTEND_URL`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `STORAGE_DRIVER` y `LOCAL_UPLOAD_PATH`.
+- Se separaron variables actuales de variables preparadas para tareas futuras (`DIRECT_URL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_STORAGE_BUCKET`).
+- Se creo `.env.production.example` como plantilla versionada sin secretos reales.
+- Se creo `docs/project/PRODUCTION_ENV.md` con tablas de variables, origen de valores, secretos, pasos para generar JWT y riesgos conocidos.
+- Se documento que `STORAGE_DRIVER=supabase` no debe considerarse funcional hasta implementar el adaptador Supabase Storage.
+- Se documento que `DIRECT_URL` queda reservado para el flujo Prisma/Supabase y aun no esta cableado en `schema.prisma`.
+- Se enlazaron las variables de produccion desde `README.md` y `DEPLOYMENT_PLAN.md`.
+- Se corrigio `.gitignore` escapando el patron del residuo local `{console.error(e)` como `[{]console.error(e)` para no romper herramientas que interpretan globs.
+- Se marco `Preparar variables de entorno de produccion` como completada en `TASKS.md`.
+- Se actualizo la version del proyecto de `0.27.26` a `0.27.27` segun `VERSIONING.md`, por hito documental de despliegue.
+
+### Archivos creados
+
+- `.env.production.example`
+- `docs/project/PRODUCTION_ENV.md`
+
+### Archivos tocados
+
+- `.gitignore`
+- `README.md`
+- `package.json`
+- `package-lock.json`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para preparar variables dentro del flujo Vercel + Supabase.
+- `skills/security/SKILL.md`: usada para clasificar secretos, evitar valores reales en archivos versionados y documentar `SUPABASE_SERVICE_ROLE_KEY` como clave solo de servidor.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada como principal porque no se creo el proyecto Supabase ni se ejecutaron migraciones.
+- `skills/backend/SKILL.md`: descartada porque no se modifico codigo de API.
+- `skills/testing/SKILL.md`: descartada como principal porque no hubo cambios ejecutables de producto.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque todavia no se conecta Vercel.
+
+### Comprobaciones
+
+- Busqueda de variables de entorno en `apps`, `packages`, `scripts`, `.env.example`, `README.md` y `DEPLOYMENT_PLAN.md`: correcto.
+- Revision de `apps/api/src/modules/storage/storage.module.ts`: confirma que `supabase` aun no esta soportado.
+- Revision de `apps/api/prisma/schema.prisma`: confirma que `DIRECT_URL` aun no esta cableado.
+- `npm run format`: correcto.
+- Busqueda de variables de entorno tras corregir `.gitignore`: correcto; no hay error de glob y las variables quedan documentadas sin valores reales.
+
+### Resultado
+
+Variables de produccion preparadas documentalmente, sin secretos reales y con riesgos de Supabase Storage/API serverless explicitados antes de crear el proyecto Supabase.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Crear proyecto Supabase`.
+- Hay que generar `JWT_ACCESS_SECRET` y `JWT_REFRESH_SECRET` solo cuando se configuren variables reales en Vercel.
+- Supabase Storage requiere adaptador posterior antes de usar `STORAGE_DRIVER=supabase` en produccion.
+
+## 2026-07-15
+
+### Tarea
+
 Subir monorepo local a GitHub.
 
 ### Fase activa

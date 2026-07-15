@@ -4,6 +4,18 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.27] - 2026-07-15
+
+### Added
+
+- Plantilla `.env.production.example` sin secretos reales para preparar la configuracion de Vercel/Supabase.
+- Documento `docs/project/PRODUCTION_ENV.md` con variables actuales, variables futuras, secretos, origen de cada valor y riesgos conocidos.
+
+### Changed
+
+- Plan de despliegue y README enlazados a la referencia de variables de produccion.
+- `.gitignore` corregido para escapar el residuo local `{console.error(e)` sin romper herramientas que interpretan glob patterns.
+
 ## [0.27.26] - 2026-07-15
 
 ### Changed
