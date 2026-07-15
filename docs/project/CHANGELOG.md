@@ -4,6 +4,14 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.34] - 2026-07-15
+
+### Changed
+
+- Repositorio GitHub `borjabarber/Wormarket` conectado/importado en Vercel con raiz `./`.
+- Configuracion de proyecto Vercel verificada para el monorepo: `npm install`, `npm run build:web` y salida `apps/web/.next`.
+- Documentacion de despliegue actualizada para dejar la siguiente tarea centrada en variables de entorno de Vercel.
+
 ## [0.27.33] - 2026-07-15
 
 ### Added

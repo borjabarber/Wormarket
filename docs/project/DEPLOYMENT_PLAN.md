@@ -81,6 +81,21 @@ Commits iniciales:
 
 - `6fd3bba`: monorepo inicial de Wormarket.
 
+## Proyecto Vercel
+
+Repositorio conectado/importado en Vercel:
+
+```text
+Repositorio: borjabarber/Wormarket
+Root Directory: ./
+Framework Preset: Next.js u Other si Vercel no autodetecta Next.js por ser monorepo
+Install Command: npm install
+Build Command: npm run build:web
+Output Directory: apps/web/.next
+```
+
+La raiz debe mantenerse en `./` para incluir tanto `apps/web` como la funcion serverless `api/[...path].ts`.
+
 ## Proyecto Supabase
 
 Proyecto creado en Supabase:
@@ -163,7 +178,7 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 7. Adaptar Supabase Storage. Completado a nivel de codigo y documentacion.
 8. Revisar estrategia realtime. Completado: produccion inicial usara polling REST.
 9. Preparar API para Vercel. Completado con `vercel.json` y funcion catch-all `/api`.
-10. Conectar Vercel al repositorio.
+10. Conectar Vercel al repositorio. Completado con raiz `./` y comandos de build verificados.
 11. Configurar variables de entorno.
 12. Desplegar.
 13. Cargar seed demo controlado.

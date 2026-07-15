@@ -114,7 +114,7 @@ Estado: En progreso
 - [x] Adaptar imagenes a Supabase Storage
 - [x] Revisar estrategia realtime compatible con Vercel
 - [x] Preparar API para Vercel/serverless
-- [ ] Conectar Vercel al repositorio GitHub
+- [x] Conectar Vercel al repositorio GitHub
 - [ ] Configurar variables de entorno en Vercel
 - [ ] Desplegar Wormarket en Vercel
 - [ ] Cargar datos de demostracion controlados

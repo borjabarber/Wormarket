@@ -20,6 +20,84 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Conectar Vercel al repositorio GitHub.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Conectar Vercel al repositorio GitHub`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md` y `skills/security/SKILL.md`.
+- Se reviso `skills/deploy-to-vercel/SKILL.md` como referencia secundaria para el flujo de importacion Git/Vercel.
+- Se confirmo que el repositorio local esta limpio y sincronizado con `origin/main`.
+- Se confirmo que el remoto GitHub configurado es `https://github.com/borjabarber/Wormarket.git`.
+- Se guio la importacion del repositorio `borjabarber/Wormarket` desde el panel de Vercel.
+- Se indico mantener `Root Directory` en `./` para incluir tanto `apps/web` como `api/[...path].ts`.
+- Se verifico con el usuario que Vercel muestra los comandos esperados: `npm install`, `npm run build:web` y `apps/web/.next`.
+- Se documento que Vercel puede mostrar `Other` si no autodetecta Next.js en la raiz del monorepo; no se considera bloqueo porque `vercel.json` define `framework`, build y output.
+- Se marco `Conectar Vercel al repositorio GitHub` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Configurar variables de entorno en Vercel`.
+- Se actualizo la version del proyecto de `0.27.33` a `0.27.34` segun `VERSIONING.md`, por hito operativo/documental de despliegue.
+
+### Archivos creados
+
+- Ninguno.
+
+### Archivos tocados
+
+- `README.md`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/deploy-to-vercel/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para guiar la conexion GitHub + Vercel dentro del plan gratuito y sin desplegar antes de variables.
+- `skills/security/SKILL.md`: usada para evitar introducir secretos y separar esta tarea de la configuracion de variables.
+
+### Skills descartadas
+
+- `skills/deploy-to-vercel/SKILL.md`: revisada como referencia, pero no aplicada como principal porque no se hizo deploy ni se uso CLI; prevalece el flujo propio de Wormarket.
+- `skills/backend/SKILL.md`: descartada porque no hubo cambios en API ni dominio.
+- `skills/frontend/SKILL.md`: descartada porque no hubo cambios de interfaz.
+- `skills/database/SKILL.md`: descartada porque no se tocaron Prisma, migraciones ni datos.
+- `skills/testing/SKILL.md`: descartada como principal porque la tarea fue externa/documental y no modifico codigo ejecutable.
+
+### Comprobaciones
+
+- `git status --short --branch`: correcto; `main` sincronizada con `origin/main`.
+- `git remote -v`: correcto; remoto `borjabarber/Wormarket.git`.
+- Revision de configuracion visible en Vercel: correcto segun confirmacion del usuario; raiz `./`, `npm install`, `npm run build:web`, `apps/web/.next`.
+- Revision documental: correcto; no se anadieron secretos ni variables reales.
+
+### Resultado
+
+Vercel queda conectado/importado al repositorio GitHub con configuracion de monorepo preparada. No se pulso `Deploy` en esta tarea; el despliegue queda pendiente hasta configurar variables.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Configurar variables de entorno en Vercel`.
+- Si Vercel muestra `Framework Preset: Other`, mantener los comandos manuales y `vercel.json`; se validara en el primer despliegue.
+- No configurar secretos fuera del panel de Vercel ni pegarlos en el chat.
+
+## 2026-07-15
+
+### Tarea
+
 Preparar API para Vercel/serverless.
 
 ### Fase activa
