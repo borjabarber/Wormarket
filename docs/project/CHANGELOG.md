@@ -4,6 +4,17 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-07-15
+
+### Changed
+
+- Version final demostrable de Wormarket cerrada tras completar desarrollo local, despliegue gratuito en Vercel + Supabase, health checks, flujo E2E publico, limpieza E2E remota y runbook operativo.
+- README, roadmap, tareas, versionado y paquetes raiz sincronizados con `1.0.0`.
+
+### Notes
+
+- No se han creado tags ni releases porque requieren permiso explicito.
+
 ## [0.27.46] - 2026-07-15
 
 ### Added

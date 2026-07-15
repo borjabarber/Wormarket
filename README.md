@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.45`.
+- Version actual: `1.0.0`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 

@@ -2,11 +2,11 @@
 
 ## Estado actual
 
-Version actual: `0.27.46`.
+Version actual: `1.0.0`.
 
 Fase activa: Despliegue.
 
-La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase activa pasa a despliegue con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless, proyecto Vercel conectado, variables de entorno configuradas y despliegue publico operativo.
+La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase de despliegue queda completada con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless, proyecto Vercel conectado, variables de entorno configuradas, despliegue publico operativo, runbook documentado y version `1.0.0` cerrada sin tag ni release.
 
 ## Hitos completados
 
@@ -26,7 +26,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Cerrar version 1.0.0.
+- Preparar demostracion del TFM.
 
 ## Fase de despliegue
 
@@ -47,7 +47,8 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Configurar health checks. Completado: liveness, readiness con PostgreSQL y script `health:public`.
 - Probar flujo completo en URL publica. Completado con `npm run test:e2e:public`.
 - Documentar despliegue. Completado con `docs/project/DEPLOYMENT_RUNBOOK.md`.
+- Cerrar version 1.0.0. Completado sin crear tag ni release.
 
 ## 1.0.0
 
-Reservada para el cierre estable del MVP local o para una version de produccion aprobada explicitamente. No se crearan tags ni releases sin permiso.
+Version final demostrable del MVP desplegado. Cerrada tras validar el despliegue publico, documentar el runbook operativo y sincronizar README, CHANGELOG, VERSIONING, WORK_LOG, `package.json` y `package-lock.json`. No se crearon tags ni releases por no existir permiso explicito.

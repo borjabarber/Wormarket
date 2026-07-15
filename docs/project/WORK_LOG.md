@@ -20,6 +20,79 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Cerrar version 1.0.0.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Cerrar version 1.0.0`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/testing/SKILL.md` y `skills/security/SKILL.md`.
+- Se comprobo `VERSIONING.md`: el paso a `1.0.0` requiere aprobacion explicita y no permite crear tags ni releases sin permiso adicional.
+- Se interpreto la instruccion del usuario de continuar con esta tarea como aprobacion para cerrar `1.0.0`, manteniendo la restriccion de no crear tag ni release.
+- Se sincronizo la version final demostrable en README, ROADMAP, VERSIONING, CHANGELOG, TASKS y paquetes raiz.
+- Se marco `Cerrar version 1.0.0` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Preparar demostracion del TFM`.
+
+### Archivos creados
+
+- Ninguno.
+
+### Archivos tocados
+
+- `README.md`
+- `docs/project/TASKS.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/VERSIONING.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/WORK_LOG.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para cerrar la version tras validar el despliegue gratuito y documentado.
+- `skills/testing/SKILL.md`: usada para definir una validacion proporcional al cierre estable.
+- `skills/security/SKILL.md`: usada para confirmar que el cierre no introduce secretos ni tags/releases no autorizados.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada porque no hubo cambios de schema, migraciones ni seed.
+- `skills/backend/SKILL.md`: descartada porque no hubo cambios de API.
+- `skills/frontend/SKILL.md`: descartada porque no hubo cambios de interfaz.
+
+### Comprobaciones
+
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run test`: correcto; 52 archivos y 111 tests API, 23 archivos y 66 tests web, paquetes compartidos sin tests pendientes.
+- `npm run build`: correcto; build API y build web completadas.
+- `npm run health:public`: correcto con acceso de red; `/api/health`, `/api/health/live` y `/api/health/ready` responden `ok`.
+- `npm run test:e2e:cleanup:supabase`: correcto con acceso de red; 0 artefactos E2E detectados en Supabase.
+
+### Resultado
+
+La version `1.0.0` queda preparada como version final demostrable del MVP desplegado, sin crear tag ni release.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Preparar demostracion del TFM`.
+- Tags y releases siguen pendientes de permiso explicito.
+
+## 2026-07-15
+
+### Tarea
+
 Documentar despliegue.
 
 ### Fase activa

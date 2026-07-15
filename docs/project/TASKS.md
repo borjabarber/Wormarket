@@ -122,5 +122,5 @@ Estado: En progreso
 - [x] Configurar health checks
 - [x] Probar flujo completo en URL publica
 - [x] Documentar despliegue
-- [ ] Cerrar version 1.0.0
+- [x] Cerrar version 1.0.0
 - [ ] Preparar demostracion del TFM
