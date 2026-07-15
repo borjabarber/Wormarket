@@ -4,6 +4,14 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.37] - 2026-07-15
+
+### Changed
+
+- Wormarket desplegado en Vercel con URL publica `https://wormarket.vercel.app`.
+- Health check publico `GET /api/health` validado con respuesta `200 OK`.
+- Tarea `Desplegar Wormarket en Vercel` marcada como completada; el catalogo queda pendiente de seed demo controlado en Supabase.
+
 ## [0.27.36] - 2026-07-15
 
 ### Fixed

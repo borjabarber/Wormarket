@@ -116,7 +116,7 @@ Estado: En progreso
 - [x] Preparar API para Vercel/serverless
 - [x] Conectar Vercel al repositorio GitHub
 - [x] Configurar variables de entorno en Vercel
-- [ ] Desplegar Wormarket en Vercel
+- [x] Desplegar Wormarket en Vercel
 - [ ] Cargar datos de demostracion controlados
 - [ ] Configurar GitHub Actions final
 - [ ] Configurar health checks

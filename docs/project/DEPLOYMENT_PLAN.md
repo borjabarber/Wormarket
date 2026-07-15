@@ -98,6 +98,15 @@ La raiz debe mantenerse en `./` para incluir tanto `apps/web` como la funcion se
 
 Variables de entorno configuradas en Vercel desde un archivo local temporal `.env.vercel.local`, ignorado por Git. No se han registrado valores reales en la documentacion ni en el repositorio.
 
+Despliegue publico operativo:
+
+```text
+URL publica: https://wormarket.vercel.app
+Health check: https://wormarket.vercel.app/api/health
+```
+
+`GET /api/health` responde `200 OK`. El catalogo aparece vacio hasta cargar datos demo controlados en Supabase.
+
 ## Proyecto Supabase
 
 Proyecto creado en Supabase:
@@ -182,7 +191,7 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 9. Preparar API para Vercel. Completado con `vercel.json` y funcion catch-all `/api`.
 10. Conectar Vercel al repositorio. Completado con raiz `./` y comandos de build verificados.
 11. Configurar variables de entorno. Completado desde `.env.vercel.local` local ignorado por Git.
-12. Desplegar.
+12. Desplegar. Completado: frontend publico y health check API operativos.
 13. Cargar seed demo controlado.
 14. Probar flujo completo en URL publica.
 15. Documentar despliegue.

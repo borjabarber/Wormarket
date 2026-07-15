@@ -38,6 +38,13 @@ Despliegue.
 - Se ajusto `vercel.json` para ejecutar `npm run db:generate && npm run build:web`.
 - Se ajusto `PrismaService` para no llamar a `$connect()` durante `onModuleInit`; Prisma conectara bajo demanda cuando un endpoint use base de datos.
 - Se actualizo la version del proyecto de `0.27.35` a `0.27.36` segun `VERSIONING.md`, por correccion tecnica de despliegue.
+- Se subio el fix a GitHub y Vercel desplego correctamente el commit `fix-vercel-prisma-generation`.
+- Se valido la URL publica `https://wormarket.vercel.app`.
+- Se valido `GET https://wormarket.vercel.app/api/health` con respuesta HTTP 200.
+- Se comprobo que el explorador publico ya no muestra error de API, pero lista `0 anuncios encontrados` porque Supabase todavia no tiene seed demo.
+- Se marco `Desplegar Wormarket en Vercel` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Cargar datos de demostracion controlados`.
+- Se actualizo la version del proyecto de `0.27.36` a `0.27.37` segun `VERSIONING.md`, por hito operativo de despliegue publico validado.
 
 ### Archivos creados
 
@@ -85,16 +92,18 @@ Despliegue.
 - `npm run typecheck`: correcto.
 - `npm run build:web`: correcto.
 - `npm run format`: correcto.
+- `curl -i https://wormarket.vercel.app/api/health`: correcto tras el fix; HTTP 200 y body `{"status":"ok","service":"wormarket-api",...}`.
+- Revision visual de `https://wormarket.vercel.app`: correcto; frontend carga, catalogo vacio por falta de seed.
 
 ### Resultado
 
-El primer despliegue publico sirvio el frontend, pero la API fallo con HTTP 500. Se preparo un fix para generar Prisma Client en Vercel y evitar conexion eager de Prisma al arrancar la funcion serverless.
+Wormarket queda desplegado en Vercel con frontend publico y API serverless operativa. El catalogo queda vacio porque la base Supabase no tiene datos demo cargados todavia.
 
 ### Riesgos o pendientes
 
-- La tarea `Desplegar Wormarket en Vercel` sigue pendiente hasta subir el fix, redeployar y validar `/api/health`.
-- Si `/api/health` sigue fallando tras el fix, revisar logs de Functions en Vercel para identificar variable faltante o error runtime exacto.
-- Si `/api/health` responde pero los anuncios no cargan, revisar `DATABASE_URL`, seed demo y consultas a Supabase.
+- La siguiente tarea es `Cargar datos de demostracion controlados`.
+- Hay que cargar seed demo en Supabase antes de validar login, anuncios y flujo completo en URL publica.
+- Si los datos demo no aparecen tras seed, revisar `DATABASE_URL` de Vercel y logs de Functions.
 
 ## 2026-07-15
 
