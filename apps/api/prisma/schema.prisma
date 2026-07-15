@@ -1,0 +1,340 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Dimension {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  name             String
+  description      String
+  currencyCode     String
+  currencyName     String
+  exchangeRate     Float
+  shippingRules    String
+  forbiddenObjects String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  users            User[]
+  listings         Listing[]
+
+  @@index([name])
+  @@map("dimensions")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  username        String    @unique
+  displayName     String
+  bio             String
+  avatarUrl       String?
+  homeDimensionId String
+  homeDimension   Dimension @relation(fields: [homeDimensionId], references: [id], onDelete: Restrict)
+  reputation      Int       @default(0)
+  role            UserRole  @default(USER)
+  status          UserStatus @default(ACTIVE)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  identityAccount IdentityAccount?
+  listings        Listing[]
+  favorites       Favorite[]
+  offersMade      Offer[]          @relation("OfferBuyer")
+  transactionsAsBuyer  Transaction[]  @relation("TransactionBuyer")
+  transactionsAsSeller Transaction[]  @relation("TransactionSeller")
+  conversationsAsBuyer Conversation[] @relation("ConversationBuyer")
+  conversationsAsSeller Conversation[] @relation("ConversationSeller")
+  messagesSent         Message[]      @relation("MessageSender")
+  reviewsWritten       Review[]       @relation("ReviewReviewer")
+  reviewsReceived      Review[]       @relation("ReviewReviewee")
+  notifications        Notification[]
+  reportsCreated       Report[]       @relation("ReportReporter")
+  reportsReceived      Report[]       @relation("ReportReportedUser")
+  reportsResolved      Report[]       @relation("ReportResolver")
+
+  @@index([displayName])
+  @@index([homeDimensionId])
+  @@index([status])
+  @@map("users")
+}
+
+model Listing {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  sellerId    String
+  seller      User          @relation(fields: [sellerId], references: [id], onDelete: Restrict)
+  dimensionId String
+  dimension   Dimension     @relation(fields: [dimensionId], references: [id], onDelete: Restrict)
+  title       String
+  description String
+  price       Float
+  currencyCode String
+  rarity      ListingRarity
+  status      ListingStatus @default(PUBLISHED)
+  imageUrls   String[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  favorites   Favorite[]
+  offers      Offer[]
+  transaction Transaction?
+  conversations Conversation[]
+  reports Report[]
+
+  @@index([sellerId])
+  @@index([dimensionId])
+  @@index([status])
+  @@index([rarity])
+  @@index([createdAt])
+  @@map("listings")
+}
+
+model IdentityAccount {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  passwordHash     String
+  refreshTokenHash String?
+  userId           String    @unique
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("identity_accounts")
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listingId String
+  listing   Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, listingId])
+  @@index([userId])
+  @@index([listingId])
+  @@map("favorites")
+}
+
+model Offer {
+  id           String      @id @default(cuid())
+  listingId    String
+  listing      Listing     @relation(fields: [listingId], references: [id], onDelete: Restrict)
+  buyerId      String
+  buyer        User        @relation("OfferBuyer", fields: [buyerId], references: [id], onDelete: Restrict)
+  amount       Float
+  currencyCode String
+  message      String?
+  status       OfferStatus @default(PENDING)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  transaction  Transaction?
+
+  @@index([listingId])
+  @@index([buyerId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("offers")
+}
+
+model Transaction {
+  id           String            @id @default(cuid())
+  offerId      String            @unique
+  offer        Offer             @relation(fields: [offerId], references: [id], onDelete: Restrict)
+  listingId    String            @unique
+  listing      Listing           @relation(fields: [listingId], references: [id], onDelete: Restrict)
+  buyerId      String
+  buyer        User              @relation("TransactionBuyer", fields: [buyerId], references: [id], onDelete: Restrict)
+  sellerId     String
+  seller       User              @relation("TransactionSeller", fields: [sellerId], references: [id], onDelete: Restrict)
+  amount       Float
+  currencyCode String
+  status       TransactionStatus @default(PENDING_DELIVERY)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  completedAt  DateTime?
+  reviews      Review[]
+
+  @@index([buyerId])
+  @@index([sellerId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("transactions")
+}
+
+model Conversation {
+  id        String    @id @default(cuid())
+  listingId String
+  listing   Listing   @relation(fields: [listingId], references: [id], onDelete: Restrict)
+  buyerId   String
+  buyer     User      @relation("ConversationBuyer", fields: [buyerId], references: [id], onDelete: Restrict)
+  sellerId  String
+  seller    User      @relation("ConversationSeller", fields: [sellerId], references: [id], onDelete: Restrict)
+  messages  Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([listingId, buyerId, sellerId])
+  @@index([buyerId])
+  @@index([sellerId])
+  @@index([listingId])
+  @@index([createdAt])
+  @@map("conversations")
+}
+
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderId       String
+  sender         User         @relation("MessageSender", fields: [senderId], references: [id], onDelete: Restrict)
+  content        String
+  createdAt      DateTime     @default(now())
+  readAt         DateTime?
+
+  @@index([conversationId])
+  @@index([senderId])
+  @@index([createdAt])
+  @@index([readAt])
+  @@map("messages")
+}
+
+model Review {
+  id            String      @id @default(cuid())
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Restrict)
+  reviewerId    String
+  reviewer      User        @relation("ReviewReviewer", fields: [reviewerId], references: [id], onDelete: Restrict)
+  revieweeId    String
+  reviewee      User        @relation("ReviewReviewee", fields: [revieweeId], references: [id], onDelete: Restrict)
+  rating        Int
+  comment       String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([transactionId, reviewerId])
+  @@index([reviewerId])
+  @@index([revieweeId])
+  @@index([rating])
+  @@index([createdAt])
+  @@map("reviews")
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  title     String
+  message   String
+  linkPath  String?
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+
+  @@index([userId])
+  @@index([type])
+  @@index([readAt])
+  @@index([createdAt])
+  @@map("notifications")
+}
+
+model Report {
+  id             String           @id @default(cuid())
+  reporterId     String
+  reporter       User             @relation("ReportReporter", fields: [reporterId], references: [id], onDelete: Restrict)
+  targetType     ReportTargetType
+  listingId      String?
+  listing        Listing?         @relation(fields: [listingId], references: [id], onDelete: Restrict)
+  reportedUserId String?
+  reportedUser   User?            @relation("ReportReportedUser", fields: [reportedUserId], references: [id], onDelete: Restrict)
+  reason         ReportReason
+  description    String
+  status         ReportStatus     @default(PENDING)
+  resolution     String?
+  resolvedById   String?
+  resolvedBy     User?            @relation("ReportResolver", fields: [resolvedById], references: [id], onDelete: Restrict)
+  resolvedAt     DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@index([reporterId])
+  @@index([targetType])
+  @@index([listingId])
+  @@index([reportedUserId])
+  @@index([status])
+  @@index([reason])
+  @@index([createdAt])
+  @@map("reports")
+}
+
+enum UserRole {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+}
+
+enum ListingRarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+  FORBIDDEN
+}
+
+enum ListingStatus {
+  DRAFT
+  PUBLISHED
+  RESERVED
+  SOLD
+  CANCELLED
+  BLOCKED
+}
+
+enum OfferStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+enum TransactionStatus {
+  PENDING_DELIVERY
+  COMPLETED
+  CANCELLED
+}
+
+enum NotificationType {
+  OFFER_RECEIVED
+  OFFER_ACCEPTED
+  OFFER_REJECTED
+  MESSAGE_RECEIVED
+  TRANSACTION_COMPLETED
+  REVIEW_RECEIVED
+}
+
+enum ReportTargetType {
+  LISTING
+  USER
+}
+
+enum ReportReason {
+  FORBIDDEN_OBJECT
+  FRAUD
+  HARASSMENT
+  SPAM
+  OTHER
+}
+
+enum ReportStatus {
+  PENDING
+  RESOLVED
+  DISMISSED
+}

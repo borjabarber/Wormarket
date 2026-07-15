@@ -1,0 +1,57 @@
+{
+  "name": "wormarket",
+  "version": "0.27.25",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/borjabarber/Wormarket.git"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently --names web,api --prefix-colors cyan,green \"npm run dev:web\" \"npm run dev:api\"",
+    "dev:web": "npm run dev --workspace=@wormarket/web --if-present",
+    "dev:api": "npm run dev --workspace=@wormarket/api --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "build:web": "npm run build --workspace=@wormarket/web --if-present",
+    "build:api": "npm run build --workspace=@wormarket/api --if-present",
+    "lint": "eslint .",
+    "format": "prettier --check \"**/*.{js,mjs,cjs,ts,tsx,json,css,md,yml,yaml}\"",
+    "format:write": "prettier --write \"**/*.{js,mjs,cjs,ts,tsx,json,css,md,yml,yaml}\"",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:unit": "npm run test:unit --workspaces --if-present",
+    "test:e2e": "npm run test:e2e --workspaces --if-present",
+    "test:e2e:cleanup": "node scripts/local-e2e-cleanup.mjs",
+    "test:integration:local": "node scripts/local-integration-smoke.mjs",
+    "db:generate": "npm run db:generate --workspace=@wormarket/api --if-present",
+    "db:migrate": "npm run db:migrate --workspace=@wormarket/api --if-present",
+    "db:migrate:create": "npm run db:migrate:create --workspace=@wormarket/api --",
+    "db:migrate:status": "npm run db:migrate:status --workspace=@wormarket/api --if-present",
+    "db:seed": "npm run db:seed --workspace=@wormarket/api --if-present",
+    "db:reset": "npm run db:reset --workspace=@wormarket/api --if-present"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@next/eslint-plugin-next": "^16.2.10",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/supertest": "^7.2.0",
+    "@vitejs/plugin-react": "^6.0.3",
+    "concurrently": "^10.0.3",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.7.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.4",
+    "supertest": "^7.2.2",
+    "typescript-eslint": "^8.63.0",
+    "vitest": "^4.1.10"
+  }
+}
