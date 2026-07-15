@@ -75,6 +75,27 @@ describe('ListingDetail', () => {
     ).toBeTruthy();
   });
 
+  it('shows the offer action before the report action', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Response.json(listingFixture)),
+    );
+
+    renderListingDetail();
+
+    await screen.findByRole('heading', {
+      level: 1,
+      name: 'Brujula de decisiones no tomadas',
+    });
+
+    const pageText = document.body.textContent ?? '';
+
+    expect(pageText.indexOf('Inicia sesion para ofertar')).toBeGreaterThanOrEqual(0);
+    expect(
+      pageText.indexOf('Denunciar el anuncio Brujula de decisiones no tomadas'),
+    ).toBeGreaterThan(pageText.indexOf('Inicia sesion para ofertar'));
+  });
+
   it('renders an accessible placeholder when the listing has no image', async () => {
     vi.stubGlobal(
       'fetch',

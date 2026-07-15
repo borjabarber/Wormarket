@@ -20,6 +20,95 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Corregir residuos E2E publicos y orden de acciones en detalle de anuncio.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- El usuario reporto que seguian visibles artefactos E2E en la web publica, incluido `@comprador-e2e-mrm442vr-uw4vfh`, valoraciones y notificaciones.
+- Se trato como correccion urgente de calidad de demo antes de continuar con `Documentar despliegue`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/database/SKILL.md`, `skills/frontend/SKILL.md`, `skills/backend/SKILL.md`, `skills/testing/SKILL.md` y `skills/security/SKILL.md`.
+- Se detecto que `scripts/public-e2e-flow.mjs` importaba el limpiador antes de cargar `.env.supabase.local`, mientras `scripts/local-e2e-cleanup.mjs` resolvia `DATABASE_URL` al cargar el modulo. Eso dejaba la limpieza apuntando al PostgreSQL local por defecto.
+- Se movio la resolucion de `DATABASE_URL` al momento de ejecutar `cleanupE2eArtifacts`, para que el E2E publico limpie Supabase tras cargar el entorno remoto.
+- Se amplio la deteccion de residuos E2E con coincidencias `ILIKE` y patrones mas amplios para usuarios, anuncios, valoraciones y notificaciones.
+- Se creo `test:e2e:cleanup:supabase` para limpiar manualmente artefactos E2E de Supabase leyendo `.env.supabase.local` sin imprimir secretos.
+- Se ejecuto la limpieza de Supabase y se eliminaron 1 conversacion, 1 anuncio, 1 oferta, 1 transaccion, 1 usuario, 1 valoracion, 1 mensaje, 1 cuenta de identidad y 5 notificaciones E2E.
+- Se verifico con una segunda limpieza que Supabase quedo con 0 artefactos E2E detectados.
+- Se ajusto el detalle de anuncio para mostrar `OfferForm` y el panel de ofertas antes de `ReportForm`, dejando la denuncia despues de la accion comercial principal.
+- Se anadio una prueba frontend que asegura que la accion de ofertar aparece antes que denunciar.
+- Se actualizo la version del proyecto de `0.27.44` a `0.27.45` segun `VERSIONING.md`, por correccion visible de demo publica.
+
+### Archivos creados
+
+- `scripts/supabase-e2e-cleanup.mjs`
+
+### Archivos tocados
+
+- `README.md`
+- `apps/web/src/features/listings/components/listing-detail.tsx`
+- `apps/web/src/features/listings/components/listing-detail.test.tsx`
+- `scripts/local-e2e-cleanup.mjs`
+- `scripts/supabase-e2e-cleanup.mjs`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/database/SKILL.md`
+- `skills/frontend/SKILL.md`
+- `skills/backend/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada porque el fallo afectaba a la URL publica y a Supabase.
+- `skills/database/SKILL.md`: usada para corregir limpieza de datos remotos sin tocar schema ni migraciones.
+- `skills/frontend/SKILL.md`: usada para cambiar el orden visible del detalle de anuncio.
+- `skills/backend/SKILL.md`: usada como apoyo para no romper contratos REST del flujo E2E.
+- `skills/testing/SKILL.md`: usada para anadir cobertura de orden visual y ejecutar E2E publico.
+- `skills/security/SKILL.md`: usada para cargar `.env.supabase.local` sin imprimir secretos y validar que apunta a Supabase.
+
+### Skills descartadas
+
+- `skills/design-system/SKILL.md`: descartada porque no se cambio estilo visual, solo orden de secciones.
+- `skills/accessibility/SKILL.md`: descartada como principal porque la semantica existente se mantiene; la prueba cubre orden de lectura basico.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque no se cambio configuracion de Vercel.
+
+### Comprobaciones
+
+- `npm run test:e2e:cleanup:supabase`: correcto; elimino residuos E2E visibles de Supabase.
+- `npm run test:e2e:cleanup:supabase`: correcto; segunda ejecucion detecto 0 artefactos.
+- `npm run test --workspace=@wormarket/web -- listing-detail.test.tsx`: correcto; 1 archivo y 5 tests pasados.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run format`: correcto tras formatear el test.
+- `npm run test:e2e:public`: correcto; flujo publico completo y limpieza del run confirmada.
+- `npm run test:e2e:cleanup:supabase`: correcto; tras el E2E publico detecto 0 artefactos.
+- `npm run test`: correcto; 52 archivos y 111 tests API, 23 archivos y 66 tests web, paquetes compartidos sin tests pendientes.
+
+### Resultado
+
+La demo publica queda limpia de usuarios/anuncios/valoraciones/notificaciones E2E y el detalle de anuncio muestra primero la accion logica de oferta antes de la denuncia.
+
+### Riesgos o pendientes
+
+- `test:e2e:cleanup:supabase` depende de `.env.supabase.local` local y de conectividad con Supabase.
+- La siguiente tarea sigue siendo `Documentar despliegue`.
+
+## 2026-07-15
+
+### Tarea
+
 Probar flujo completo en URL publica.
 
 ### Fase activa

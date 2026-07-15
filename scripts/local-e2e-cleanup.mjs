@@ -2,10 +2,11 @@
 
 import pg from 'pg';
 
-const databaseUrl =
-  process.env.DATABASE_URL ?? 'postgresql://wormarket:wormarket@localhost:5432/wormarket';
-
 const { Client } = pg;
+
+function resolveDatabaseUrl() {
+  return process.env.DATABASE_URL ?? 'postgresql://wormarket:wormarket@localhost:5432/wormarket';
+}
 
 function buildPatterns(runId) {
   if (runId) {
@@ -14,16 +15,18 @@ function buildPatterns(runId) {
       displayNamePattern: `Comprador E2E ${runId}`,
       listingTitlePattern: `Objeto e2e ${runId}`,
       listingSlugPattern: `objeto-e2e-${runId}`,
+      descriptionPattern: `%${runId}%`,
       textPattern: `%${runId}%`,
     };
   }
 
   return {
-    userPattern: 'comprador-e2e-%',
-    displayNamePattern: 'Comprador E2E %',
-    listingTitlePattern: 'Objeto e2e %',
-    listingSlugPattern: 'objeto-e2e-%',
+    descriptionPattern: '%end-to-end%',
+    displayNamePattern: '%E2E%',
+    listingSlugPattern: '%e2e%',
+    listingTitlePattern: '%e2e%',
     textPattern: '%e2e%',
+    userPattern: '%e2e%',
   };
 }
 
@@ -43,7 +46,7 @@ async function deleteRows(client, tableName, sql) {
 }
 
 export async function cleanupE2eArtifacts({ runId } = {}) {
-  const client = new Client({ connectionString: databaseUrl });
+  const client = new Client({ connectionString: resolveDatabaseUrl() });
   const patterns = buildPatterns(runId);
 
   await client.connect();
@@ -55,9 +58,9 @@ export async function cleanupE2eArtifacts({ runId } = {}) {
       CREATE TEMP TABLE cleanup_e2e_users ON COMMIT DROP AS
       SELECT id
       FROM users
-      WHERE username LIKE $1
-        OR "displayName" LIKE $2
-        OR bio LIKE '%e2e%'
+      WHERE username ILIKE $1
+        OR "displayName" ILIKE $2
+        OR bio ILIKE '%e2e%'
       `,
       [patterns.userPattern, patterns.displayNamePattern],
     );
@@ -66,11 +69,11 @@ export async function cleanupE2eArtifacts({ runId } = {}) {
       CREATE TEMP TABLE cleanup_e2e_listings ON COMMIT DROP AS
       SELECT id
       FROM listings
-      WHERE title LIKE $1
-        OR slug LIKE $2
-        OR description LIKE '%end-to-end local%'
+      WHERE title ILIKE $1
+        OR slug ILIKE $2
+        OR description ILIKE $3
       `,
-      [patterns.listingTitlePattern, patterns.listingSlugPattern],
+      [patterns.listingTitlePattern, patterns.listingSlugPattern, patterns.descriptionPattern],
     );
     await client.query(
       `
@@ -79,7 +82,7 @@ export async function cleanupE2eArtifacts({ runId } = {}) {
       FROM offers
       WHERE "buyerId" IN (SELECT id FROM cleanup_e2e_users)
          OR "listingId" IN (SELECT id FROM cleanup_e2e_listings)
-         OR message LIKE $1
+         OR message ILIKE $1
       `,
       [patterns.textPattern],
     );
@@ -132,9 +135,9 @@ export async function cleanupE2eArtifacts({ runId } = {}) {
         `
         DELETE FROM notifications
         WHERE "userId" IN (SELECT id FROM cleanup_e2e_users)
-           OR title LIKE '%e2e%'
-           OR message LIKE '%e2e%'
-           OR "linkPath" LIKE '%e2e%'
+           OR title ILIKE '%e2e%'
+           OR message ILIKE '%e2e%'
+           OR "linkPath" ILIKE '%e2e%'
         `,
       ),
     );
@@ -147,7 +150,7 @@ export async function cleanupE2eArtifacts({ runId } = {}) {
         WHERE "reviewerId" IN (SELECT id FROM cleanup_e2e_users)
            OR "revieweeId" IN (SELECT id FROM cleanup_e2e_users)
            OR "transactionId" IN (SELECT id FROM cleanup_e2e_transactions)
-           OR comment LIKE '%e2e%'
+           OR comment ILIKE '%e2e%'
         `,
       ),
     );

@@ -175,6 +175,8 @@ export function ListingDetail({ slug }: ListingDetailProps) {
           </div>
         </div>
       </div>
+      <OfferForm listing={listing} />
+      <ListingOffersPanel listing={listing} />
       {!canEdit ? (
         <ReportForm
           targetId={listing.slug}
@@ -182,8 +184,6 @@ export function ListingDetail({ slug }: ListingDetailProps) {
           targetType="LISTING"
         />
       ) : null}
-      <OfferForm listing={listing} />
-      <ListingOffersPanel listing={listing} />
     </article>
   );
 }

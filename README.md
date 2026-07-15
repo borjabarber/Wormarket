@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.42`.
+- Version actual: `0.27.45`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -213,6 +213,7 @@ npm run test
 npm run test:unit
 npm run test:e2e
 npm run test:e2e:cleanup
+npm run test:e2e:cleanup:supabase
 npm run test:e2e:public
 npm run test:integration:local
 npm run health:public
@@ -226,7 +227,7 @@ npm run db:seed
 npm run db:reset
 ```
 
-`npm run dev` arranca frontend y backend en paralelo. Los scripts `test` y `test:unit` ejecutan Vitest en los workspaces configurados. `test:e2e` ejecuta las pruebas HTTP locales de la API y el flujo e2e local de Wormarket contra frontend, backend y base con seed. `test:e2e:cleanup` elimina artefactos e2e locales si una ejecucion anterior dejo usuarios, anuncios, ofertas, transacciones o valoraciones temporales. `test:e2e:public` valida la URL publica de Vercel contra Supabase y limpia los datos temporales que crea.
+`npm run dev` arranca frontend y backend en paralelo. Los scripts `test` y `test:unit` ejecutan Vitest en los workspaces configurados. `test:e2e` ejecuta las pruebas HTTP locales de la API y el flujo e2e local de Wormarket contra frontend, backend y base con seed. `test:e2e:cleanup` elimina artefactos e2e locales si una ejecucion anterior dejo usuarios, anuncios, ofertas, transacciones o valoraciones temporales. `test:e2e:cleanup:supabase` hace la misma limpieza contra Supabase leyendo `.env.supabase.local`, sin imprimir secretos. `test:e2e:public` valida la URL publica de Vercel contra Supabase y limpia los datos temporales que crea.
 
 ## PostgreSQL local
 
@@ -393,6 +394,12 @@ Al terminar, el flujo e2e ejecuta `scripts/local-e2e-cleanup.mjs` para borrar lo
 
 ```bash
 npm run test:e2e:cleanup
+```
+
+Para limpiar residuos E2E de la base de Supabase usada por la URL publica:
+
+```bash
+npm run test:e2e:cleanup:supabase
 ```
 
 `npm run test:e2e:public` ejecuta el flujo principal contra `https://wormarket.vercel.app`: health checks, lecturas publicas, login demo, registro, favoritos, publicacion, detalle, chat REST, oferta, transaccion, valoracion, notificaciones y autorizacion de moderacion. Requiere `.env.supabase.local` local para limpiar los artefactos E2E en Supabase al terminar.

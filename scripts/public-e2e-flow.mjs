@@ -218,8 +218,7 @@ async function createListing(vendorSession) {
   const listingTitle = `Objeto e2e ${runId}`;
   const listing = await request('/listings', {
     body: JSON.stringify({
-      description:
-        'Objeto imposible creado por la prueba end-to-end local para validar publicacion y compra en despliegue publico.',
+      description: `Objeto imposible creado por la prueba end-to-end publica ${runId} para validar publicacion y compra en despliegue publico.`,
       dimensionSlug: buyerRegistration.homeDimensionSlug,
       imageUrls: ['/images/demo/brujula-decisiones.png'],
       price: 241,

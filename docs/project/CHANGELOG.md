@@ -4,6 +4,18 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.45] - 2026-07-15
+
+### Fixed
+
+- Limpieza E2E publica corregida para usar el `DATABASE_URL` de Supabase cargado desde `.env.supabase.local` antes de borrar artefactos.
+- Artefactos E2E visibles en Supabase eliminados: comprador temporal, anuncio, oferta, transaccion, valoracion, conversacion, mensaje y notificaciones.
+- Orden del detalle de anuncio ajustado para mostrar la accion de oferta antes de la denuncia.
+
+### Added
+
+- Script `test:e2e:cleanup:supabase` para limpiar residuos E2E de la base remota de demo de forma explicita.
+
 ## [0.27.44] - 2026-07-15
 
 ### Fixed
