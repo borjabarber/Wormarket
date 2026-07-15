@@ -213,6 +213,7 @@ npm run test
 npm run test:unit
 npm run test:e2e
 npm run test:e2e:cleanup
+npm run test:e2e:public
 npm run test:integration:local
 npm run health:public
 npm run db:generate
@@ -225,7 +226,7 @@ npm run db:seed
 npm run db:reset
 ```
 
-`npm run dev` arranca frontend y backend en paralelo. Los scripts `test` y `test:unit` ejecutan Vitest en los workspaces configurados. `test:e2e` ejecuta las pruebas HTTP locales de la API y el flujo e2e local de Wormarket contra frontend, backend y base con seed. `test:e2e:cleanup` elimina artefactos e2e locales si una ejecucion anterior dejo usuarios, anuncios, ofertas, transacciones o valoraciones temporales.
+`npm run dev` arranca frontend y backend en paralelo. Los scripts `test` y `test:unit` ejecutan Vitest en los workspaces configurados. `test:e2e` ejecuta las pruebas HTTP locales de la API y el flujo e2e local de Wormarket contra frontend, backend y base con seed. `test:e2e:cleanup` elimina artefactos e2e locales si una ejecucion anterior dejo usuarios, anuncios, ofertas, transacciones o valoraciones temporales. `test:e2e:public` valida la URL publica de Vercel contra Supabase y limpia los datos temporales que crea.
 
 ## PostgreSQL local
 
@@ -359,6 +360,7 @@ El monorepo usa Vitest como runner principal y un script Node local para el fluj
 npm run test
 npm run test:unit
 npm run test:e2e
+npm run test:e2e:public
 npm run test --workspace=@wormarket/web
 npm run test --workspace=@wormarket/api
 ```
@@ -392,6 +394,8 @@ Al terminar, el flujo e2e ejecuta `scripts/local-e2e-cleanup.mjs` para borrar lo
 ```bash
 npm run test:e2e:cleanup
 ```
+
+`npm run test:e2e:public` ejecuta el flujo principal contra `https://wormarket.vercel.app`: health checks, lecturas publicas, login demo, registro, favoritos, publicacion, detalle, chat REST, oferta, transaccion, valoracion, notificaciones y autorizacion de moderacion. Requiere `.env.supabase.local` local para limpiar los artefactos E2E en Supabase al terminar.
 
 ## Integracion local frontend-backend
 

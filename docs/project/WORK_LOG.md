@@ -20,6 +20,82 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Probar flujo completo en URL publica.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Probar flujo completo en URL publica`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/testing/SKILL.md`, `skills/backend/SKILL.md` y `skills/security/SKILL.md`.
+- Se anadio el script `test:e2e:public` para ejecutar el flujo principal contra `https://wormarket.vercel.app/api` y `https://wormarket.vercel.app`.
+- Se reutilizo la limpieza E2E existente para borrar usuarios, anuncios, ofertas, transacciones, valoraciones, conversaciones y notificaciones temporales creadas durante la prueba publica.
+- Se valido el flujo publico completo: health checks, lecturas publicas, login demo, registro, favoritos, publicacion, busqueda, detalle, conversacion, mensaje REST, oferta, aceptacion, transaccion, valoracion, notificaciones y autorizacion de moderacion.
+- Se marco `Probar flujo completo en URL publica` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Documentar despliegue`.
+- Se actualizo la version del proyecto de `0.27.42` a `0.27.43` segun `VERSIONING.md`, por nueva validacion publica reproducible.
+
+### Archivos creados
+
+- `scripts/public-e2e-flow.mjs`
+
+### Archivos tocados
+
+- `README.md`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/backend/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para validar el despliegue publico sin nuevos proveedores ni coste.
+- `skills/testing/SKILL.md`: usada para convertir el flujo publico en una comprobacion reproducible con limpieza posterior.
+- `skills/backend/SKILL.md`: usada para cubrir endpoints REST, autenticacion, autorizacion y recursos protegidos.
+- `skills/security/SKILL.md`: usada para evitar imprimir secretos y exigir limpieza de artefactos E2E en Supabase.
+
+### Skills descartadas
+
+- `skills/frontend/SKILL.md`: descartada porque no hubo cambios de interfaz.
+- `skills/database/SKILL.md`: descartada como principal porque no hubo migraciones ni cambios de schema.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque no se cambio la configuracion del proyecto Vercel.
+
+### Comprobaciones
+
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run test`: correcto; 52 archivos y 111 tests API, 23 archivos y 65 tests web, paquetes compartidos sin tests pendientes.
+- `npm run build`: correcto; build API y build web completadas.
+- `npm run test:e2e:public`: correcto; flujo publico completado y limpieza de artefactos E2E confirmada.
+
+### Resultado
+
+La URL publica de Wormarket queda validada con un flujo de usuario completo de extremo a extremo y un comando reproducible.
+
+### Riesgos o pendientes
+
+- `npm run test:e2e:public` requiere red y `.env.supabase.local` local para poder limpiar Supabase.
+- La siguiente tarea es `Documentar despliegue`.
+
+## 2026-07-15
+
+### Tarea
+
 Configurar health checks.
 
 ### Fase activa

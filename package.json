@@ -1,6 +1,6 @@
 {
   "name": "wormarket",
-  "version": "0.27.42",
+  "version": "0.27.43",
   "private": true,
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "test:unit": "npm run test:unit --workspaces --if-present",
     "test:e2e": "npm run test:e2e --workspaces --if-present",
     "test:e2e:cleanup": "node scripts/local-e2e-cleanup.mjs",
+    "test:e2e:public": "node scripts/public-e2e-flow.mjs",
     "test:integration:local": "node scripts/local-integration-smoke.mjs",
     "health:public": "node scripts/check-public-health.mjs",
     "db:generate": "npm run db:generate --workspace=@wormarket/api --if-present",

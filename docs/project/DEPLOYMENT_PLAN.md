@@ -203,7 +203,7 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 13. Cargar seed demo controlado. Completado con `db:seed:supabase`.
 14. Configurar GitHub Actions final. Completado con CI gratuita, PostgreSQL local, migraciones, seed, calidad, tests, build y audit.
 15. Configurar health checks. Completado con liveness, readiness y script `health:public`.
-16. Probar flujo completo en URL publica.
+16. Probar flujo completo en URL publica. Completado con `npm run test:e2e:public`.
 17. Documentar despliegue.
 
 ## Comprobaciones antes de desplegar
@@ -230,8 +230,8 @@ Tambien hay que comprobar:
 - Comprobar health checks con `npm run health:public`.
 - Iniciar sesion con usuario demo.
 - Explorar anuncios.
-- Probar detalle, favoritos y ofertas.
-- Probar publicacion si Storage ya esta adaptado.
+- Probar detalle, favoritos y ofertas. Completado por `npm run test:e2e:public`.
+- Probar publicacion si Storage ya esta adaptado. Completado por `npm run test:e2e:public`.
 - Revisar logs de Vercel.
 - Confirmar datos demo en Supabase. Completado: seed demo idempotente cargado con 13 anuncios y usuarios de prueba.
 

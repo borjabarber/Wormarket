@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.42`.
+Version actual: `0.27.43`.
 
 Fase activa: Despliegue.
 
@@ -22,11 +22,11 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 - Pruebas unitarias, integracion y e2e local.
 - Auditoria y evaluacion actualizada de skills.
 - Revision de changelog y versionado.
-- Supabase PostgreSQL migrado, Supabase Storage adaptado para imagenes de anuncios, API preparada para Vercel/serverless, repositorio GitHub conectado/importado en Vercel con raiz `./`, variables de entorno configuradas, URL publica desplegada, seed demo cargado en Supabase y CI final gratuita validada.
+- Supabase PostgreSQL migrado, Supabase Storage adaptado para imagenes de anuncios, API preparada para Vercel/serverless, repositorio GitHub conectado/importado en Vercel con raiz `./`, variables de entorno configuradas, URL publica desplegada, seed demo cargado en Supabase, CI final gratuita validada y flujo e2e publico completado.
 
 ## Pendiente inmediato
 
-- Probar flujo completo en URL publica.
+- Documentar despliegue.
 
 ## Fase de despliegue
 
@@ -45,7 +45,7 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Cargar datos demo controlados. Completado: Supabase contiene los usuarios demo, dimensiones, anuncios y datos relacionados del seed idempotente.
 - Configurar GitHub Actions final. Completado: CI gratuita con PostgreSQL local, migraciones, seed, calidad, tests, build y audit.
 - Configurar health checks. Completado: liveness, readiness con PostgreSQL y script `health:public`.
-- Probar flujo completo en URL publica.
+- Probar flujo completo en URL publica. Completado con `npm run test:e2e:public`.
 - Documentar despliegue.
 
 ## 1.0.0

@@ -4,6 +4,17 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.43] - 2026-07-15
+
+### Added
+
+- Script `test:e2e:public` para validar el flujo principal completo contra la URL publica de Vercel y Supabase.
+- Documentacion del flujo E2E publico y su limpieza de artefactos temporales.
+
+### Changed
+
+- Tarea `Probar flujo completo en URL publica` marcada como completada.
+
 ## [0.27.42] - 2026-07-15
 
 ### Added
