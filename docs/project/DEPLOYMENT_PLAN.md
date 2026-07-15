@@ -50,7 +50,8 @@ Vercel
 Supabase
   |- PostgreSQL
   |- Storage para imagenes
-  |- Realtime opcional si se decide sustituir Socket.IO
+  |- Polling REST inicial para chat/notificaciones
+  |- Supabase Realtime opcional como mejora posterior
 ```
 
 ## Riesgo tecnico principal
@@ -63,7 +64,7 @@ Antes de publicar hay que decidir una estrategia:
 - mover una capa API minima a Next.js,
 - o mantener solo lo necesario para la demo publica.
 
-Socket.IO tambien requiere revision. Para coste `0` y menor complejidad, la opcion preferida inicial es simplificar realtime mediante polling o estudiar Supabase Realtime si el tiempo lo permite.
+Socket.IO queda limitado al desarrollo local para el primer despliegue. La estrategia inicial de produccion sera polling REST con TanStack Query para chat y notificaciones, documentada en `docs/project/REALTIME_STRATEGY.md`. Supabase Realtime queda como mejora posterior si aporta valor antes de la demo final.
 
 ## Repositorio GitHub
 
@@ -159,7 +160,7 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 5. Configurar PostgreSQL.
 6. Ejecutar migraciones Prisma.
 7. Adaptar Supabase Storage. Completado a nivel de codigo y documentacion.
-8. Revisar estrategia realtime.
+8. Revisar estrategia realtime. Completado: produccion inicial usara polling REST.
 9. Preparar API para Vercel.
 10. Conectar Vercel al repositorio.
 11. Configurar variables de entorno.

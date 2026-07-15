@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.31`.
+- Version actual: `0.27.32`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -517,6 +517,8 @@ Las rutas de Notifications requieren cabecera `Authorization: Bearer <accessToke
 Las rutas de Transactions requieren cabecera `Authorization: Bearer <accessToken>`. `POST /transactions/from-offer/:offerId` crea de forma idempotente una transaccion desde una oferta aceptada del vendedor autenticado, `GET /transactions` lista las transacciones donde participa el usuario autenticado, `GET /transactions/:transactionId` devuelve el detalle solo a comprador o vendedor y `POST /transactions/:transactionId/complete` completa la transaccion y marca el anuncio como vendido.
 
 Las rutas de Conversations requieren cabecera `Authorization: Bearer <accessToken>`. `POST /conversations` crea de forma idempotente una conversacion entre comprador y vendedor a partir de un anuncio, `GET /conversations` lista las conversaciones del usuario autenticado, `GET /conversations/:conversationId/messages` devuelve mensajes solo a participantes, `POST /conversations/:conversationId/messages` envia mensajes y `POST /conversations/:conversationId/read` marca como leidos los mensajes recibidos. El gateway Socket.IO local usa el namespace `/conversations` y los eventos `conversation:join`, `message:send`, `message:sent`, `message:read`.
+
+Para produccion inicial en Vercel, realtime no dependera de Socket.IO. La estrategia decidida es polling REST con TanStack Query para chat y notificaciones, usando `NEXT_PUBLIC_REALTIME_MODE=polling`. Supabase Realtime queda como mejora posterior si aporta valor a la demo.
 
 Las rutas de Reviews permiten valorar transacciones completadas. `POST /reviews` requiere cabecera `Authorization: Bearer <accessToken>` y crea una valoracion del otro participante de la transaccion; cada participante solo puede valorar una vez la misma transaccion. `GET /users/:username/reviews` lista publicamente las valoraciones recibidas por un usuario. La reputacion publica se recalcula como media de estrellas en escala 0-100.
 

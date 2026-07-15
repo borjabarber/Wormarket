@@ -4,6 +4,18 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.32] - 2026-07-15
+
+### Added
+
+- Documento `docs/project/REALTIME_STRATEGY.md` con la decision de realtime compatible con Vercel.
+- Variable `NEXT_PUBLIC_REALTIME_MODE` documentada para separar Socket.IO local de polling REST en produccion inicial.
+
+### Changed
+
+- Estrategia de despliegue actualizada: Socket.IO queda para desarrollo local y la primera URL publica usara polling REST para chat y notificaciones.
+- Tarea `Revisar estrategia realtime compatible con Vercel` marcada como completada.
+
 ## [0.27.31] - 2026-07-15
 
 ### Added

@@ -20,6 +20,91 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Revisar estrategia realtime compatible con Vercel.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Revisar estrategia realtime compatible con Vercel`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/backend/SKILL.md`, `skills/frontend/SKILL.md`, `skills/security/SKILL.md` y `skills/testing/SKILL.md`.
+- Se inspecciono el realtime actual de Wormarket: gateways Socket.IO de conversaciones y notificaciones, clientes frontend y endpoints REST equivalentes.
+- Se consulto documentacion oficial vigente de Vercel Functions/WebSockets y Supabase Realtime.
+- Se documento que Vercel soporta WebSockets en Functions, pero las conexiones quedan ligadas a una instancia y el estado durable debe vivir fuera de memoria.
+- Se evaluaron tres opciones: mantener Socket.IO en Vercel, migrar a Supabase Realtime o usar polling REST inicial.
+- Se decidio usar polling REST con TanStack Query para la primera produccion gratuita, mantener Socket.IO para desarrollo local y reservar Supabase Realtime como mejora posterior.
+- Se anadio `docs/project/REALTIME_STRATEGY.md` con decision, contexto, opciones, riesgos, intervalos recomendados y criterios de aceptacion futuros.
+- Se documento `NEXT_PUBLIC_REALTIME_MODE` con `socket` para local y `polling` para produccion.
+- Se marco `Revisar estrategia realtime compatible con Vercel` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Preparar API para Vercel/serverless`.
+- Se actualizo la version del proyecto de `0.27.31` a `0.27.32` segun `VERSIONING.md`, por hito documental relevante de despliegue.
+
+### Archivos creados
+
+- `docs/project/REALTIME_STRATEGY.md`
+
+### Archivos tocados
+
+- `.env.example`
+- `.env.production.example`
+- `README.md`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/PRODUCTION_ENV.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/backend/SKILL.md`
+- `skills/frontend/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/testing/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para decidir una estrategia compatible con Vercel + Supabase y coste `0`.
+- `skills/backend/SKILL.md`: usada para revisar los gateways Socket.IO y confirmar los endpoints REST equivalentes.
+- `skills/frontend/SKILL.md`: usada para revisar los clientes Socket.IO y el encaje futuro con TanStack Query.
+- `skills/security/SKILL.md`: usada para evitar exponer secretos y revisar autenticacion/canales antes de proponer Supabase Realtime.
+- `skills/testing/SKILL.md`: usada para definir criterios de aceptacion futuros y comprobaciones documentales proporcionales.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada porque no se tocaron modelos, migraciones ni RLS.
+- `skills/deploy-to-vercel/SKILL.md`: descartada como principal porque la decision afecta a Vercel y Supabase, y prevalece `deployment`.
+- `skills/webapp-testing/SKILL.md`: descartada porque no hubo cambios de interfaz ejecutable.
+
+### Comprobaciones
+
+- Revision de `TASKS.md`: correcto; la primera tarea pendiente era `Revisar estrategia realtime compatible con Vercel`.
+- Revision de gateways y clientes Socket.IO existentes: correcto; realtime actual se limita a conversaciones y notificaciones.
+- Revision de endpoints REST equivalentes: correcto; chat y notificaciones pueden degradar a polling.
+- Consulta de documentacion oficial de Vercel y Supabase: correcto.
+- Revision documental de variables: correcto; `NEXT_PUBLIC_REALTIME_MODE` queda documentada sin secretos.
+
+### Resultado
+
+La estrategia realtime de produccion inicial queda decidida: Wormarket no dependera de Socket.IO para desplegar en Vercel; usara polling REST para chat y notificaciones en la primera URL publica.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Preparar API para Vercel/serverless`.
+- Todavia falta implementar el modo `polling` en frontend y configurar `NEXT_PUBLIC_REALTIME_MODE=polling` en Vercel cuando toque.
+- Supabase Realtime queda como mejora posterior, no como bloqueo del despliegue inicial.
+
+## 2026-07-15
+
+### Tarea
+
 Adaptar imagenes a Supabase Storage.
 
 ### Fase activa

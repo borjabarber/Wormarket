@@ -51,7 +51,7 @@ Antes de cerrar la fase local:
 
 ## Version actual
 
-`0.27.31`
+`0.27.32`
 
 ## Tags y releases
 

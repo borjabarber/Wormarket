@@ -39,6 +39,7 @@ No crear ni subir:
 | `SUPABASE_URL` | URL publica del proyecto Supabase | Vercel | No | Necesaria para Supabase Storage |
 | `SUPABASE_SERVICE_ROLE_KEY` | Acceso servidor a Supabase Storage | Vercel | Si | Nunca exponer en cliente |
 | `SUPABASE_STORAGE_BUCKET` | Bucket de imagenes | Vercel | No | Valor previsto: `wormarket-listing-images` |
+| `NEXT_PUBLIC_REALTIME_MODE` | Estrategia realtime del frontend | Vercel | No | Recomendado: `polling` |
 
 ## Valores que dependen de pasos futuros
 
@@ -82,6 +83,7 @@ STORAGE_DRIVER=supabase
 SUPABASE_URL=<copiar desde Supabase>
 SUPABASE_SERVICE_ROLE_KEY=<copiar desde Supabase>
 SUPABASE_STORAGE_BUCKET=wormarket-listing-images
+NEXT_PUBLIC_REALTIME_MODE=polling
 ```
 
 `DIRECT_URL` debe mantenerse como secreto. Se usara para ejecutar migraciones Prisma de forma controlada desde un entorno local seguro o desde un job de despliegue si se define mas adelante.
@@ -94,6 +96,7 @@ SUPABASE_STORAGE_BUCKET=wormarket-listing-images
 - Las migraciones contra Supabase ya se ejecutaron con `prisma migrate deploy`; no repetirlas sin revisar el entorno.
 - `NEXT_PUBLIC_API_URL` puede cambiar si finalmente la API vive bajo la misma URL de Vercel o se adapta con otra ruta.
 - `SUPABASE_SERVICE_ROLE_KEY` es una clave de servidor y nunca debe aparecer en codigo cliente ni en variables `NEXT_PUBLIC_*`.
+- `NEXT_PUBLIC_REALTIME_MODE=polling` evita depender de Socket.IO en la primera URL publica.
 
 ## Checklist
 
@@ -103,3 +106,4 @@ SUPABASE_STORAGE_BUCKET=wormarket-listing-images
 - [x] Pasos externos pendientes documentados.
 - [x] `DIRECT_URL` preparado para migraciones Prisma/Supabase.
 - [x] Supabase Storage adaptado para subidas de imagenes de produccion.
+- [x] Estrategia realtime de produccion inicial decidida como polling REST.
