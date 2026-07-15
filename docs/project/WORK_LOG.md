@@ -38,10 +38,13 @@ Despliegue.
 - Se anadieron variables ficticias de CI para `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `DATABASE_URL`, `DIRECT_URL`, storage local y realtime polling.
 - Se incorporaron los pasos `npm run db:migrate:deploy` y `npm run db:seed` antes de formato, lint, typecheck, tests y build.
 - Se mantuvo `npm audit --audit-level=high` para bloquear vulnerabilidades altas o criticas sin fallar por moderadas.
+- Tras subir el primer commit, GitHub Actions quedo atascado en el paso unico `Test`; se ajusto la CI para dividir tests por workspace y anadir limites por paso sin consumir minutos gratis indefinidamente.
+- Se validaron localmente los comandos separados de API, web y paquetes compartidos usados por la CI.
 - Se actualizo el README para reemplazar `CI inicial` por `CI final` y aclarar que no despliega ni usa secretos reales.
 - Se marco `Configurar GitHub Actions final` como completada en `TASKS.md`.
 - Se actualizo el pendiente inmediato del roadmap a `Configurar health checks`.
 - Se actualizo la version del proyecto de `0.27.39` a `0.27.40` segun `VERSIONING.md`, por cierre de CI final gratuita.
+- Se actualizo la version del proyecto de `0.27.40` a `0.27.41` segun `VERSIONING.md`, por correccion operativa de la CI final.
 
 ### Archivos creados
 
@@ -83,16 +86,19 @@ Despliegue.
 - `npm run lint`: correcto.
 - `npm run typecheck`: correcto.
 - `npm run test`: correcto; 52 archivos y 105 tests API, 23 archivos y 65 tests web, paquetes compartidos sin tests pendientes.
+- `npm run test --workspace=@wormarket/api -- --pool=forks --teardownTimeout=5000`: correcto; 52 archivos y 105 tests API.
+- `npm run test --workspace=@wormarket/web -- --pool=forks --teardownTimeout=5000`: correcto; 23 archivos y 65 tests web.
+- `npm run test --workspace=@wormarket/shared-types --workspace=@wormarket/shared-validation --if-present`: correcto; paquetes compartidos sin tests pendientes.
 - `npm run build`: correcto; build API y build web completadas.
 - `npm audit --audit-level=high`: correcto; informa 5 vulnerabilidades moderadas y no hay altas o criticas. No se aplica `npm audit fix --force` porque propone cambios rompientes.
 
 ### Resultado
 
-GitHub Actions queda configurado como CI final gratuita para Wormarket, con base PostgreSQL local en el runner y sin acceso a servicios de produccion.
+GitHub Actions queda configurado como CI final gratuita para Wormarket, con base PostgreSQL local en el runner, tests separados por workspace, timeouts por paso y sin acceso a servicios de produccion.
 
 ### Riesgos o pendientes
 
-- El workflow final con PostgreSQL local, migraciones y seed se validara realmente en GitHub al subir el commit.
+- El primer workflow subido quedo atascado en `Test`; queda pendiente validar la nueva ejecucion de GitHub Actions con los tests separados.
 - Persisten 5 vulnerabilidades moderadas reportadas por `npm audit`, sin bloqueo por el umbral alto/critico de CI.
 - La siguiente tarea es `Configurar health checks`.
 

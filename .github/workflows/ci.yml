@@ -83,8 +83,17 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Test
-        run: npm run test
+      - name: Test API
+        timeout-minutes: 5
+        run: npm run test --workspace=@wormarket/api -- --pool=forks --teardownTimeout=5000
+
+      - name: Test web
+        timeout-minutes: 5
+        run: npm run test --workspace=@wormarket/web -- --pool=forks --teardownTimeout=5000
+
+      - name: Test shared packages
+        timeout-minutes: 3
+        run: npm run test --workspace=@wormarket/shared-types --workspace=@wormarket/shared-validation --if-present
 
       - name: Build
         run: npm run build

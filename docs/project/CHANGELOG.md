@@ -4,6 +4,12 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.41] - 2026-07-15
+
+### Fixed
+
+- GitHub Actions final ajustado para dividir tests por workspace y limitar su duracion, evitando que una ejecucion atascada consuma minutos gratis indefinidamente.
+
 ## [0.27.40] - 2026-07-15
 
 ### Changed
