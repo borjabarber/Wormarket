@@ -72,6 +72,7 @@ jobs:
         run: npm run db:migrate:deploy
 
       - name: Seed demo data
+        timeout-minutes: 3
         run: npm run db:seed
 
       - name: Check formatting

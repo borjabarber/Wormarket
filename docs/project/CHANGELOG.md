@@ -4,6 +4,12 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.44] - 2026-07-15
+
+### Fixed
+
+- Anadido timeout especifico al paso `Seed demo data` de GitHub Actions para evitar consumos largos si el seed se bloquea.
+
 ## [0.27.43] - 2026-07-15
 
 ### Added

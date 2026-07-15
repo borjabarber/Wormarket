@@ -37,6 +37,8 @@ Despliegue.
 - Se marco `Probar flujo completo en URL publica` como completada en `TASKS.md`.
 - Se actualizo el pendiente inmediato del roadmap a `Documentar despliegue`.
 - Se actualizo la version del proyecto de `0.27.42` a `0.27.43` segun `VERSIONING.md`, por nueva validacion publica reproducible.
+- Tras el push, GitHub Actions quedo demasiado tiempo en el paso `Seed demo data`; se anadio `timeout-minutes: 3` a ese paso para evitar consumos largos de minutos gratuitos si vuelve a bloquearse.
+- Se actualizo la version del proyecto de `0.27.43` a `0.27.44` segun `VERSIONING.md`, por correccion operativa de CI vinculada a esta validacion.
 
 ### Archivos creados
 
@@ -45,6 +47,7 @@ Despliegue.
 ### Archivos tocados
 
 - `README.md`
+- `.github/workflows/ci.yml`
 - `docs/project/TASKS.md`
 - `docs/project/DEPLOYMENT_PLAN.md`
 - `docs/project/ROADMAP.md`
