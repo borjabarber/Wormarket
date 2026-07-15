@@ -20,6 +20,90 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Cargar datos de demostracion controlados.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Cargar datos de demostracion controlados`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/database/SKILL.md`, `skills/security/SKILL.md` y `skills/testing/SKILL.md`.
+- Se comprobo que el seed de Prisma es idempotente mediante `upsert` y contiene los usuarios, dimensiones, anuncios y datos relacionados de demo.
+- Se anadio el script seguro `db:seed:supabase`, que lee `.env.supabase.local`, valida que `DATABASE_URL` y `DIRECT_URL` apunten a Supabase, rechaza placeholders y ejecuta `db:generate` antes del seed.
+- Se confirmo con `git check-ignore -v .env.supabase.local` que el archivo local de Supabase sigue ignorado por Git.
+- El primer intento del seed fallo antes de tocar Supabase por `spawn EINVAL` al invocar `npm` desde Node en Windows.
+- Se corrigio el lanzador para usar `cmd.exe /d /s /c` en Windows con argumentos controlados.
+- Se ejecuto `npm run db:seed:supabase` contra Supabase y el seed confirmo 3 dimensiones, 6 usuarios, 13 anuncios, 5 favoritos, 5 ofertas, 1 transaccion, 3 conversaciones, 2 valoraciones, 3 notificaciones y 2 denuncias.
+- Se valido `GET https://wormarket.vercel.app/api/health` con respuesta `200 OK`.
+- Se valido `GET https://wormarket.vercel.app/api/listings` y la API publica devolvio el catalogo demo desde Supabase.
+- Se marco `Cargar datos de demostracion controlados` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Configurar GitHub Actions final`.
+- Se actualizo la version del proyecto de `0.27.37` a `0.27.38` segun `VERSIONING.md`, por hito operativo de despliegue con datos demo cargados.
+
+### Archivos creados
+
+- `scripts/supabase-seed-demo.mjs`
+
+### Archivos tocados
+
+- `README.md`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/database/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/testing/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para ejecutar una tarea de despliegue cloud de forma controlada y sin adelantar tareas posteriores.
+- `skills/database/SKILL.md`: usada para revisar el seed Prisma, confirmar idempotencia y ejecutar carga de datos contra Supabase.
+- `skills/security/SKILL.md`: usada para mantener `.env.supabase.local` ignorado y evitar imprimir secretos.
+- `skills/testing/SKILL.md`: usada para elegir comprobaciones proporcionales: formato, lint, typecheck, health publico y catalogo publico.
+
+### Skills descartadas
+
+- `skills/frontend/SKILL.md`: descartada porque no se modifico interfaz.
+- `skills/backend/SKILL.md`: descartada porque no se cambio comportamiento de API, solo scripts operativos de seed.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque no se desplego ni se modifico Vercel; la tarea se centro en Supabase.
+
+### Comprobaciones
+
+- `git check-ignore -v .env.supabase.local`: correcto; archivo ignorado por `.env*.local`.
+- `npm run db:seed:supabase`: fallo inicialmente por `spawn EINVAL` antes de escribir en Supabase.
+- `npm run db:seed:supabase`: correcto tras corregir el lanzador; seed demo cargado en Supabase.
+- `curl -s https://wormarket.vercel.app/api/health`: correcto; respuesta `status: ok`.
+- `curl -s https://wormarket.vercel.app/api/listings`: correcto; devuelve el catalogo demo publico.
+- `npm run format`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run lint`: correcto.
+
+### Resultado
+
+Supabase ya contiene los datos demo controlados de Wormarket y la URL publica de Vercel puede leer el catalogo desde la base remota. La tarea queda completada sin registrar secretos.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Configurar GitHub Actions final`.
+- La validacion funcional completa de login, favoritos, ofertas y publicacion en URL publica queda para `Probar flujo completo en URL publica`.
+- `GET /api/listings?status=PUBLISHED` devolvio tambien el anuncio vendido, por lo que conviene revisar el contrato de filtros si afecta a la demo publica.
+
+## 2026-07-15
+
+### Tarea
+
 Desplegar Wormarket en Vercel.
 
 ### Fase activa

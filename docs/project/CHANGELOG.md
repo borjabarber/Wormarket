@@ -4,6 +4,18 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.38] - 2026-07-15
+
+### Added
+
+- Script seguro `db:seed:supabase` para cargar el seed demo controlado en Supabase desde `.env.supabase.local` sin imprimir secretos.
+
+### Changed
+
+- Seed demo cargado en Supabase: 3 dimensiones, 6 usuarios, 13 anuncios, favoritos, ofertas, transacciones, conversaciones, valoraciones, notificaciones y denuncias.
+- URL publica validada con API operativa y catalogo demo disponible desde Vercel.
+- Tarea `Cargar datos de demostracion controlados` marcada como completada.
+
 ## [0.27.37] - 2026-07-15
 
 ### Changed

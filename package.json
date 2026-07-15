@@ -1,6 +1,6 @@
 {
   "name": "wormarket",
-  "version": "0.27.37",
+  "version": "0.27.38",
   "private": true,
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "db:supabase:check": "node scripts/supabase-connection-check.mjs",
     "db:migrate:status": "npm run db:migrate:status --workspace=@wormarket/api --if-present",
     "db:seed": "npm run db:seed --workspace=@wormarket/api --if-present",
+    "db:seed:supabase": "node scripts/supabase-seed-demo.mjs",
     "db:reset": "npm run db:reset --workspace=@wormarket/api --if-present"
   },
   "devDependencies": {

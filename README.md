@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.37`.
+- Version actual: `0.27.38`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -248,6 +248,7 @@ npm run db:migrate:create -- --name migration_name
 npm run db:migrate:deploy
 npm run db:migrate:supabase
 npm run db:migrate:status
+npm run db:seed:supabase
 npm run db:reset
 npm run db:migrate --workspace=@wormarket/api
 npm run db:migrate:create --workspace=@wormarket/api -- --name migration_name
@@ -266,6 +267,14 @@ npm run db:seed
 ```
 
 El seed actual crea o actualiza de forma idempotente las dimensiones, perfiles publicos, cuentas demo autenticables, 13 anuncios demo, favoritos, ofertas, transacciones, conversaciones, valoraciones, notificaciones y denuncias de demostracion usados por el backend local.
+
+Para cargar los mismos datos demo en Supabase durante despliegue, usa el runner seguro:
+
+```bash
+npm run db:seed:supabase
+```
+
+El comando lee `.env.supabase.local`, valida que `DATABASE_URL` y `DIRECT_URL` apunten a Supabase, genera Prisma Client y ejecuta el seed sin imprimir secretos.
 
 Los anuncios del seed usan imagenes demo versionadas en `apps/web/public/images/demo/` y rutas publicas `/images/demo/...`. Estas imagenes forman parte del proyecto y permiten que el explorador y el detalle se vean completos aunque `uploads/` este vacio.
 

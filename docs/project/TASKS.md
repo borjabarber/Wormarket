@@ -117,7 +117,7 @@ Estado: En progreso
 - [x] Conectar Vercel al repositorio GitHub
 - [x] Configurar variables de entorno en Vercel
 - [x] Desplegar Wormarket en Vercel
-- [ ] Cargar datos de demostracion controlados
+- [x] Cargar datos de demostracion controlados
 - [ ] Configurar GitHub Actions final
 - [ ] Configurar health checks
 - [ ] Probar flujo completo en URL publica
