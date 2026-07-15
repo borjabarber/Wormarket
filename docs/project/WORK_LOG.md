@@ -20,6 +20,100 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Adaptar imagenes a Supabase Storage.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Adaptar imagenes a Supabase Storage`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/backend/SKILL.md`, `skills/deployment/SKILL.md`, `skills/security/SKILL.md` y `skills/testing/SKILL.md`.
+- Se instalo `@supabase/supabase-js` en el workspace `@wormarket/api`.
+- Se extrajeron reglas compartidas de validacion de imagenes para reutilizarlas entre Storage local y Supabase.
+- Se anadio `SupabaseStorageService` con subida a bucket, URL publica y descarga compatible con el contrato `StorageService`.
+- Se actualizo `StorageModule` para seleccionar `local` o `supabase` mediante `STORAGE_DRIVER`.
+- Se anadieron pruebas unitarias del adaptador Supabase Storage.
+- Se documento el bucket previsto `wormarket-listing-images`, las variables necesarias y el uso seguro de `SUPABASE_SERVICE_ROLE_KEY`.
+- Se marco `Adaptar imagenes a Supabase Storage` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Revisar estrategia realtime compatible con Vercel`.
+- Se actualizo la version del proyecto de `0.27.30` a `0.27.31` segun `VERSIONING.md`, por hito funcional de despliegue.
+
+### Archivos creados
+
+- `apps/api/src/modules/storage/infrastructure/storage-file-rules.ts`
+- `apps/api/src/modules/storage/infrastructure/supabase/supabase-storage.service.ts`
+- `apps/api/src/modules/storage/infrastructure/supabase/supabase-storage.service.spec.ts`
+- `docs/project/SUPABASE_STORAGE.md`
+
+### Archivos tocados
+
+- `.env.production.example`
+- `.env.supabase.local.example`
+- `README.md`
+- `apps/api/package.json`
+- `apps/api/src/modules/storage/infrastructure/local/local-storage.service.ts`
+- `apps/api/src/modules/storage/storage.module.ts`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/PRODUCTION_ENV.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/backend/SKILL.md`
+- `skills/deployment/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/testing/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/backend/SKILL.md`: usada para mantener el adaptador dentro del modulo Storage y respetar el puerto `StorageService`.
+- `skills/deployment/SKILL.md`: usada para alinear el cambio con Vercel + Supabase y coste `0`.
+- `skills/security/SKILL.md`: usada para evitar secretos reales, mantener la service role key solo en servidor y validar imagenes antes de subirlas.
+- `skills/testing/SKILL.md`: usada para cubrir el adaptador con pruebas unitarias y ejecutar comprobaciones proporcionales.
+
+### Skills descartadas
+
+- `skills/frontend/SKILL.md`: descartada porque el cliente frontend ya consume la `url` devuelta por Storage y no necesito cambios.
+- `skills/database/SKILL.md`: descartada porque no se tocaron Prisma, modelos ni migraciones.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque todavia no se conecta Vercel.
+
+### Comprobaciones
+
+- `npm install --workspace=@wormarket/api @supabase/supabase-js`: correcto.
+- `npm run test --workspace=@wormarket/api -- storage`: correcto; 3 archivos y 7 tests pasados.
+- `npm run typecheck --workspace=@wormarket/api`: correcto.
+- `npm run format`: fallo inicialmente por formato en el nuevo servicio Supabase.
+- `npm run format:write`: correcto; normalizo el nuevo servicio.
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run test`: correcto; API 52 archivos/105 tests, Web 23 archivos/65 tests, paquetes compartidos sin tests pasan con placeholder permitido.
+- `npm run build`: correcto.
+- Busqueda de patrones sensibles en archivos versionables: correcto; no se detectaron secretos reales.
+
+### Resultado
+
+Wormarket ya puede usar Supabase Storage para subidas de imagenes de anuncios en produccion mediante `STORAGE_DRIVER=supabase`, manteniendo el adaptador local para desarrollo.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Revisar estrategia realtime compatible con Vercel`.
+- El bucket `wormarket-listing-images` debe crearse en Supabase antes de probar subidas reales en produccion.
+- `SUPABASE_SERVICE_ROLE_KEY` debe configurarse solo en entorno servidor y seguir fuera de Git.
+
+## 2026-07-15
+
+### Tarea
+
 Ejecutar migraciones Prisma en Supabase.
 
 ### Fase activa

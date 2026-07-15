@@ -2,11 +2,11 @@
 
 ## Estado actual
 
-Version actual: `0.27.30`.
+Version actual: `0.27.31`.
 
 Fase activa: Despliegue.
 
-La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase activa pasa a despliegue, sin servicios cloud configurados todavia.
+La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase activa pasa a despliegue con GitHub y Supabase PostgreSQL ya preparados.
 
 ## Hitos completados
 
@@ -22,10 +22,11 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 - Pruebas unitarias, integracion y e2e local.
 - Auditoria y evaluacion actualizada de skills.
 - Revision de changelog y versionado.
+- Supabase PostgreSQL migrado y Supabase Storage adaptado para imagenes de anuncios.
 
 ## Pendiente inmediato
 
-- Adaptar imagenes a Supabase Storage.
+- Revisar estrategia realtime compatible con Vercel.
 
 ## Fase de despliegue
 
@@ -35,7 +36,7 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Crear proyecto Supabase.
 - Configurar PostgreSQL Supabase.
 - Ejecutar migraciones Prisma.
-- Adaptar imagenes a Supabase Storage.
+- Adaptar imagenes a Supabase Storage. Completado a nivel de codigo y documentacion.
 - Revisar realtime para Vercel, con polling o Supabase Realtime si encaja.
 - Preparar API para Vercel/serverless.
 - Desplegar Wormarket en Vercel.

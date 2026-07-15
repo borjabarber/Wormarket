@@ -132,7 +132,8 @@ Variables publicas:
 Notas:
 
 - `DIRECT_URL` queda cableado en Prisma para el flujo Supabase/Prisma y se usara en migraciones controladas.
-- `STORAGE_DRIVER=supabase` queda preparado, pero el adaptador Supabase Storage se implementara en una tarea posterior.
+- `STORAGE_DRIVER=supabase` activa el adaptador backend de Supabase Storage para imagenes de anuncios.
+- El bucket publico previsto es `wormarket-listing-images` y debe existir antes de probar subidas en Vercel.
 
 ## Tareas externas del usuario
 
@@ -157,7 +158,7 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 4. Crear proyecto Supabase.
 5. Configurar PostgreSQL.
 6. Ejecutar migraciones Prisma.
-7. Adaptar Supabase Storage.
+7. Adaptar Supabase Storage. Completado a nivel de codigo y documentacion.
 8. Revisar estrategia realtime.
 9. Preparar API para Vercel.
 10. Conectar Vercel al repositorio.

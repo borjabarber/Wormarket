@@ -28,7 +28,7 @@ No crear ni subir:
 | `DATABASE_URL` | Conexion Prisma/PostgreSQL | Vercel | Si | Se obtendra de Supabase |
 | `JWT_ACCESS_SECRET` | Firma de access tokens | Vercel | Si | Se generara antes de configurar Vercel |
 | `JWT_REFRESH_SECRET` | Firma de refresh tokens | Vercel | Si | Se generara antes de configurar Vercel |
-| `STORAGE_DRIVER` | Seleccion de adaptador de imagenes | Vercel | No | `local` en local, `supabase` cuando exista adaptador |
+| `STORAGE_DRIVER` | Seleccion de adaptador de imagenes | Vercel | No | `local` en local, `supabase` en produccion |
 | `LOCAL_UPLOAD_PATH` | Carpeta local de subidas | Local | No | No se usa en produccion |
 
 ## Variables preparadas para tareas posteriores
@@ -86,10 +86,12 @@ SUPABASE_STORAGE_BUCKET=wormarket-listing-images
 
 `DIRECT_URL` debe mantenerse como secreto. Se usara para ejecutar migraciones Prisma de forma controlada desde un entorno local seguro o desde un job de despliegue si se define mas adelante.
 
+`SUPABASE_SERVICE_ROLE_KEY` debe configurarse solo en el entorno servidor de Vercel. No debe exponerse al frontend ni declararse con prefijo `NEXT_PUBLIC_`.
+
 ## Riesgos conocidos
 
-- `STORAGE_DRIVER=supabase` todavia no funcionara hasta implementar el adaptador Supabase Storage.
-- Las migraciones contra Supabase no deben ejecutarse hasta la tarea `Ejecutar migraciones Prisma en Supabase` y solo despues de confirmar que las cadenas apuntan al proyecto correcto.
+- El bucket `wormarket-listing-images` debe existir en Supabase Storage antes de probar subidas en produccion.
+- Las migraciones contra Supabase ya se ejecutaron con `prisma migrate deploy`; no repetirlas sin revisar el entorno.
 - `NEXT_PUBLIC_API_URL` puede cambiar si finalmente la API vive bajo la misma URL de Vercel o se adapta con otra ruta.
 - `SUPABASE_SERVICE_ROLE_KEY` es una clave de servidor y nunca debe aparecer en codigo cliente ni en variables `NEXT_PUBLIC_*`.
 
@@ -100,4 +102,4 @@ SUPABASE_STORAGE_BUCKET=wormarket-listing-images
 - [x] Secretos identificados.
 - [x] Pasos externos pendientes documentados.
 - [x] `DIRECT_URL` preparado para migraciones Prisma/Supabase.
-- [x] Supabase Storage marcado como tarea posterior.
+- [x] Supabase Storage adaptado para subidas de imagenes de produccion.

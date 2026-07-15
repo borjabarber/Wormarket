@@ -4,6 +4,19 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.31] - 2026-07-15
+
+### Added
+
+- Adaptador backend de Supabase Storage para guardar imagenes de anuncios en el bucket configurado con `STORAGE_DRIVER=supabase`.
+- Reglas compartidas de validacion de imagenes para Storage local y Supabase: tipo MIME, tamano maximo y firma real de archivo.
+- Pruebas unitarias del adaptador Supabase Storage y guia `docs/project/SUPABASE_STORAGE.md`.
+
+### Changed
+
+- Documentacion de despliegue y variables actualizada para tratar Supabase Storage como adaptador funcional.
+- Version actualizada a `0.27.31` y tarea `Adaptar imagenes a Supabase Storage` marcada como completada.
+
 ## [0.27.30] - 2026-07-15
 
 ### Added

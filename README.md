@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.30`.
+- Version actual: `0.27.31`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -504,7 +504,7 @@ GET /uploads/:fileName
 
 Las rutas de Identity usan JWT local firmado con `JWT_ACCESS_SECRET` y `JWT_REFRESH_SECRET`. Estas variables pueden definirse en el `.env` local de la raiz o en el entorno del proceso; `.env.example` documenta los nombres sin incluir secretos reales.
 
-Las rutas de Storage usan `STORAGE_DRIVER=local` durante desarrollo. La subida esta protegida por access token y limita imagenes a JPG, PNG, WebP o GIF de hasta 2 MB. La lectura de `/uploads/:fileName` es publica para que las imagenes de anuncios puedan mostrarse en el frontend local.
+Las rutas de Storage usan `STORAGE_DRIVER=local` durante desarrollo y `STORAGE_DRIVER=supabase` para produccion. La subida esta protegida por access token y limita imagenes a JPG, PNG, WebP o GIF de hasta 2 MB. En local, la lectura de `/uploads/:fileName` es publica para servir `uploads/`; en produccion, el adaptador de Supabase Storage devuelve la URL publica del bucket `wormarket-listing-images`.
 
 `POST /listings` requiere cabecera `Authorization: Bearer <accessToken>`. `PATCH /listings/:slug` requiere token del vendedor propietario, mantiene el slug estable y permite modificar dimension, titulo, descripcion, precio, rareza e imagenes mientras el anuncio siga editable. Las rutas de lectura de Listings son publicas.
 
