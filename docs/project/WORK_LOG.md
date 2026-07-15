@@ -20,6 +20,86 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Configurar variables de entorno en Vercel.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Configurar variables de entorno en Vercel`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md` y `skills/security/SKILL.md`.
+- Se reviso `skills/deploy-to-vercel/SKILL.md` como referencia secundaria para Vercel.
+- Se creo el archivo local temporal `.env.vercel.local` con comentarios y placeholders para guiar la importacion de variables en Vercel.
+- Se confirmo con `git check-ignore -v .env.vercel.local` que el archivo esta ignorado por Git mediante `.env*.local`.
+- El usuario relleno y subio las variables a Vercel sin compartir secretos en el chat.
+- Se inicio el primer deploy en Vercel tras configurar variables.
+- El deploy fallo en el typecheck de Next.js porque `apps/web/vitest.config.ts` importaba `@vitejs/plugin-react`, dependencia de tests no disponible en el contexto de build de Vercel.
+- Se corrigio `apps/web/tsconfig.json` para excluir `vitest.config.ts` del typecheck de Next.js, ya que es configuracion de tests y no forma parte de la app desplegada.
+- Se marco `Configurar variables de entorno en Vercel` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Desplegar Wormarket en Vercel`.
+- Se actualizo la version del proyecto de `0.27.34` a `0.27.35` segun `VERSIONING.md`, por correccion de build de despliegue y cierre de configuracion de variables.
+
+### Archivos creados
+
+- `.env.vercel.local` local, ignorado por Git, no versionado.
+
+### Archivos tocados
+
+- `README.md`
+- `apps/web/tsconfig.json`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/deploy-to-vercel/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para guiar la configuracion de variables y separar configuracion, deploy y seed.
+- `skills/security/SKILL.md`: usada para evitar registrar secretos, confirmar que `.env.vercel.local` esta ignorado y mantener claves solo en Vercel.
+
+### Skills descartadas
+
+- `skills/deploy-to-vercel/SKILL.md`: revisada como referencia, pero no aplicada como principal porque el despliegue completo sigue el plan propio de Wormarket.
+- `skills/database/SKILL.md`: descartada porque no se ejecutaron migraciones ni cambios de schema.
+- `skills/frontend/SKILL.md`: descartada como principal porque no hubo cambio de UI; solo ajuste de configuracion TypeScript.
+- `skills/testing/SKILL.md`: descartada como principal, aunque se ejecutaron comprobaciones de build/typecheck proporcionales.
+
+### Comprobaciones
+
+- `git check-ignore -v .env.vercel.local`: correcto; `.env.vercel.local` esta ignorado.
+- `git status --short`: correcto tras crear `.env.vercel.local`; el archivo no aparece como versionable.
+- Primer deploy Vercel: fallo esperado tras configurar variables, con error `Cannot find module '@vitejs/plugin-react'` en `apps/web/vitest.config.ts`.
+- `npm run build:web`: correcto tras excluir `vitest.config.ts`.
+- `npm run typecheck --workspace=@wormarket/web`: correcto.
+- `npm run format`: correcto.
+
+### Resultado
+
+Variables de entorno configuradas en Vercel sin registrar secretos. La build de Vercel quedaba bloqueada por una configuracion de tests incluida en el typecheck de Next.js; se corrigio localmente y queda pendiente redeploy.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Desplegar Wormarket en Vercel`.
+- Hay que subir el commit con la correccion y repetir el deploy.
+- Si Vercel asigno una URL distinta de la prevista, revisar `FRONTEND_URL` despues del primer deploy correcto.
+
+## 2026-07-15
+
+### Tarea
+
 Conectar Vercel al repositorio GitHub.
 
 ### Fase activa

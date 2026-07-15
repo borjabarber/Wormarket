@@ -2,11 +2,11 @@
 
 ## Estado actual
 
-Version actual: `0.27.34`.
+Version actual: `0.27.35`.
 
 Fase activa: Despliegue.
 
-La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase activa pasa a despliegue con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless y proyecto Vercel conectado al repositorio ya preparados.
+La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase activa pasa a despliegue con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless, proyecto Vercel conectado y variables de entorno configuradas.
 
 ## Hitos completados
 
@@ -22,11 +22,11 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 - Pruebas unitarias, integracion y e2e local.
 - Auditoria y evaluacion actualizada de skills.
 - Revision de changelog y versionado.
-- Supabase PostgreSQL migrado, Supabase Storage adaptado para imagenes de anuncios, API preparada para Vercel/serverless y repositorio GitHub conectado/importado en Vercel con raiz `./`.
+- Supabase PostgreSQL migrado, Supabase Storage adaptado para imagenes de anuncios, API preparada para Vercel/serverless, repositorio GitHub conectado/importado en Vercel con raiz `./` y variables de entorno configuradas.
 
 ## Pendiente inmediato
 
-- Configurar variables de entorno en Vercel.
+- Desplegar Wormarket en Vercel.
 
 ## Fase de despliegue
 
@@ -40,6 +40,7 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Realtime de produccion inicial decidido como polling REST; Supabase Realtime queda como mejora posterior.
 - Preparar API para Vercel/serverless. Completado: `api/[...path].ts` expone NestJS bajo `/api`.
 - Conectar Vercel al repositorio GitHub. Completado: repo `borjabarber/Wormarket`, raiz `./`, build `npm run build:web`, output `apps/web/.next`.
+- Configurar variables de entorno en Vercel. Completado: variables importadas desde `.env.vercel.local` local ignorado por Git, sin registrar secretos.
 - Desplegar Wormarket en Vercel.
 - Configurar variables, CORS, cookies seguras y health checks.
 - Cargar datos demo controlados.

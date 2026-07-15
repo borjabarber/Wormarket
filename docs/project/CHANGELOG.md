@@ -4,6 +4,17 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.35] - 2026-07-15
+
+### Fixed
+
+- Build de Vercel corregida excluyendo `apps/web/vitest.config.ts` del typecheck de Next.js, ya que es configuracion de tests y no forma parte de la app desplegada.
+
+### Changed
+
+- Variables de entorno de Vercel configuradas mediante `.env.vercel.local` local ignorado por Git, sin registrar secretos en el repositorio.
+- Tarea `Configurar variables de entorno en Vercel` marcada como completada; el despliegue sigue pendiente hasta que Vercel termine correctamente.
+
 ## [0.27.34] - 2026-07-15
 
 ### Changed

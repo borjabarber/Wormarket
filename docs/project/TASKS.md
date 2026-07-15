@@ -115,7 +115,7 @@ Estado: En progreso
 - [x] Revisar estrategia realtime compatible con Vercel
 - [x] Preparar API para Vercel/serverless
 - [x] Conectar Vercel al repositorio GitHub
-- [ ] Configurar variables de entorno en Vercel
+- [x] Configurar variables de entorno en Vercel
 - [ ] Desplegar Wormarket en Vercel
 - [ ] Cargar datos de demostracion controlados
 - [ ] Configurar GitHub Actions final
