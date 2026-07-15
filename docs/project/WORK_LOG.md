@@ -20,6 +20,86 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Desplegar Wormarket en Vercel.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Desplegar Wormarket en Vercel`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/backend/SKILL.md`, `skills/database/SKILL.md`, `skills/security/SKILL.md` y `skills/testing/SKILL.md`.
+- Se reviso `skills/deploy-to-vercel/SKILL.md` como referencia secundaria para Vercel.
+- Se confirmo que el deployment `fix-vercel-web-typecheck` quedo `Ready` en Vercel y que el frontend publico cargaba en `https://wormarket.vercel.app`.
+- Se comprobo que la home publica no podia cargar anuncios y que `https://wormarket.vercel.app/api/health` devolvia HTTP 500.
+- Se diagnostico que la API serverless importa el cliente Prisma generado desde `apps/api/src/generated/prisma`, pero ese directorio no esta versionado y no se estaba generando durante el build de Vercel.
+- Se ajusto `vercel.json` para ejecutar `npm run db:generate && npm run build:web`.
+- Se ajusto `PrismaService` para no llamar a `$connect()` durante `onModuleInit`; Prisma conectara bajo demanda cuando un endpoint use base de datos.
+- Se actualizo la version del proyecto de `0.27.35` a `0.27.36` segun `VERSIONING.md`, por correccion tecnica de despliegue.
+
+### Archivos creados
+
+- Ninguno.
+
+### Archivos tocados
+
+- `README.md`
+- `apps/api/src/infrastructure/prisma/prisma.service.ts`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+- `vercel.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/backend/SKILL.md`
+- `skills/database/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/deploy-to-vercel/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para corregir el despliegue Vercel sin cambiar proveedores ni coste.
+- `skills/backend/SKILL.md`: usada para ajustar el ciclo de vida de NestJS/Prisma en serverless.
+- `skills/database/SKILL.md`: usada para asegurar que Prisma Client se genera en Vercel antes de empaquetar la API.
+- `skills/security/SKILL.md`: usada para no exponer secretos al diagnosticar el 500 publico.
+- `skills/testing/SKILL.md`: usada para validar `db:generate`, `typecheck`, `build:web` y formato.
+
+### Skills descartadas
+
+- `skills/frontend/SKILL.md`: descartada porque el frontend ya carga; el fallo esta en API/serverless.
+- `skills/deploy-to-vercel/SKILL.md`: revisada como referencia, pero no aplicada como principal porque el plan propio de Wormarket prevalece.
+
+### Comprobaciones
+
+- `curl -i https://wormarket.vercel.app/api/health`: fallo con HTTP 500 antes del fix.
+- `npm run db:generate`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run build:web`: correcto.
+- `npm run format`: correcto.
+
+### Resultado
+
+El primer despliegue publico sirvio el frontend, pero la API fallo con HTTP 500. Se preparo un fix para generar Prisma Client en Vercel y evitar conexion eager de Prisma al arrancar la funcion serverless.
+
+### Riesgos o pendientes
+
+- La tarea `Desplegar Wormarket en Vercel` sigue pendiente hasta subir el fix, redeployar y validar `/api/health`.
+- Si `/api/health` sigue fallando tras el fix, revisar logs de Functions en Vercel para identificar variable faltante o error runtime exacto.
+- Si `/api/health` responde pero los anuncios no cargan, revisar `DATABASE_URL`, seed demo y consultas a Supabase.
+
+## 2026-07-15
+
+### Tarea
+
 Configurar variables de entorno en Vercel.
 
 ### Fase activa

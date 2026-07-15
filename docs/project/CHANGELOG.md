@@ -4,6 +4,13 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.36] - 2026-07-15
+
+### Fixed
+
+- Build de Vercel ajustada para ejecutar `npm run db:generate` antes de `npm run build:web`, generando el cliente Prisma requerido por la API serverless.
+- `PrismaService` deja de conectar de forma eager durante `app.init()`, evitando que `/api/health` dependa de abrir conexion a PostgreSQL al arrancar la funcion.
+
 ## [0.27.35] - 2026-07-15
 
 ### Fixed

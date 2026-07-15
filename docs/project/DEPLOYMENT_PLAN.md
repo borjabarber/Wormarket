@@ -90,11 +90,11 @@ Repositorio: borjabarber/Wormarket
 Root Directory: ./
 Framework Preset: Next.js u Other si Vercel no autodetecta Next.js por ser monorepo
 Install Command: npm install
-Build Command: npm run build:web
+Build Command: npm run db:generate && npm run build:web
 Output Directory: apps/web/.next
 ```
 
-La raiz debe mantenerse en `./` para incluir tanto `apps/web` como la funcion serverless `api/[...path].ts`.
+La raiz debe mantenerse en `./` para incluir tanto `apps/web` como la funcion serverless `api/[...path].ts`. El build debe ejecutar `npm run db:generate` antes de `npm run build:web` porque el cliente Prisma generado no esta versionado y la API serverless lo importa en runtime.
 
 Variables de entorno configuradas en Vercel desde un archivo local temporal `.env.vercel.local`, ignorado por Git. No se han registrado valores reales en la documentacion ni en el repositorio.
 
