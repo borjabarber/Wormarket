@@ -20,6 +20,80 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Documentar despliegue.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Documentar despliegue`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/security/SKILL.md` y `skills/testing/SKILL.md`.
+- Se recopilo la documentacion existente de Vercel, Supabase PostgreSQL, Supabase Storage, API serverless, realtime, health checks, variables de produccion y usuarios demo.
+- Se creo un runbook unico de despliegue con estado actual, configuracion de Vercel, variables, pasos desde cero, validaciones, limpieza E2E, usuarios demo, troubleshooting y notas de seguridad.
+- Se enlazo el runbook desde README y plan de despliegue.
+- Se marco `Documentar despliegue` como completada en `TASKS.md`.
+- Se actualizo el roadmap para dejar como siguiente pendiente `Cerrar version 1.0.0`.
+- Se actualizo la version del proyecto de `0.27.45` a `0.27.46` segun `VERSIONING.md`, por documentacion relevante de entrega.
+
+### Archivos creados
+
+- `docs/project/DEPLOYMENT_RUNBOOK.md`
+
+### Archivos tocados
+
+- `README.md`
+- `docs/project/DEPLOYMENT_RUNBOOK.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/TASKS.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/testing/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para documentar el flujo GitHub + Vercel + Supabase sin coste y con validaciones reproducibles.
+- `skills/security/SKILL.md`: usada para separar secretos, variables publicas, service role key y archivos `.env` ignorados.
+- `skills/testing/SKILL.md`: usada para documentar comprobaciones locales, CI, health checks, E2E publico y limpieza de residuos.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada como principal porque no hubo migraciones ni cambios de schema; se referencio la documentacion existente de Supabase.
+- `skills/backend/SKILL.md`: descartada porque no hubo cambios de API.
+- `skills/frontend/SKILL.md`: descartada porque no hubo cambios de interfaz.
+
+### Comprobaciones
+
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run health:public`: correcto con acceso de red; `/api/health`, `/api/health/live` y `/api/health/ready` responden `ok`.
+- `npm run test:e2e:cleanup:supabase`: correcto con acceso de red; 0 artefactos E2E detectados en Supabase.
+
+### Resultado
+
+La tarea de documentacion de despliegue queda cubierta con una guia operativa unica para reproducir, validar y diagnosticar la produccion gratuita de Wormarket.
+
+### Riesgos o pendientes
+
+- La validacion contra produccion depende de conectividad y de `.env.supabase.local`.
+- La siguiente tarea es `Cerrar version 1.0.0`.
+
+## 2026-07-15
+
+### Tarea
+
 Corregir residuos E2E publicos y orden de acciones en detalle de anuncio.
 
 ### Fase activa

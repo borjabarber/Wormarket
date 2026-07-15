@@ -204,7 +204,9 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 14. Configurar GitHub Actions final. Completado con CI gratuita, PostgreSQL local, migraciones, seed, calidad, tests, build y audit.
 15. Configurar health checks. Completado con liveness, readiness y script `health:public`.
 16. Probar flujo completo en URL publica. Completado con `npm run test:e2e:public`.
-17. Documentar despliegue.
+17. Documentar despliegue. Completado con `docs/project/DEPLOYMENT_RUNBOOK.md`.
+
+La guia operativa final del despliegue esta en `docs/project/DEPLOYMENT_RUNBOOK.md`.
 
 ## Comprobaciones antes de desplegar
 

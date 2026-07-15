@@ -4,6 +4,17 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.46] - 2026-07-15
+
+### Added
+
+- Runbook de despliegue `docs/project/DEPLOYMENT_RUNBOOK.md` con configuracion de Vercel, Supabase, variables, validaciones, usuarios demo, limpieza E2E y troubleshooting.
+
+### Changed
+
+- README, plan de despliegue, roadmap y tareas enlazados al runbook operativo de produccion gratuita.
+- Tarea `Documentar despliegue` marcada como completada.
+
 ## [0.27.45] - 2026-07-15
 
 ### Fixed

@@ -121,6 +121,6 @@ Estado: En progreso
 - [x] Configurar GitHub Actions final
 - [x] Configurar health checks
 - [x] Probar flujo completo en URL publica
-- [ ] Documentar despliegue
+- [x] Documentar despliegue
 - [ ] Cerrar version 1.0.0
 - [ ] Preparar demostracion del TFM

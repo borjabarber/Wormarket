@@ -173,7 +173,7 @@ La guia paso a paso de demostracion esta en `docs/project/LOCAL_DEMO_GUIDE.md`.
 
 ## Despliegue
 
-El plan de despliegue gratuito esta en `docs/project/DEPLOYMENT_PLAN.md`.
+El plan de despliegue gratuito esta en `docs/project/DEPLOYMENT_PLAN.md` y la guia operativa paso a paso esta en `docs/project/DEPLOYMENT_RUNBOOK.md`.
 
 Las variables de entorno de produccion estan preparadas en `docs/project/PRODUCTION_ENV.md` y `.env.production.example`. No contienen secretos reales.
 
