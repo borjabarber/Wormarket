@@ -38,7 +38,7 @@ Despliegue.
 - Se anadieron variables ficticias de CI para `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `DATABASE_URL`, `DIRECT_URL`, storage local y realtime polling.
 - Se incorporaron los pasos `npm run db:migrate:deploy` y `npm run db:seed` antes de formato, lint, typecheck, tests y build.
 - Se mantuvo `npm audit --audit-level=high` para bloquear vulnerabilidades altas o criticas sin fallar por moderadas.
-- Tras subir el primer commit, GitHub Actions quedo atascado en el paso unico `Test`; se ajusto la CI para dividir tests por workspace y anadir limites por paso sin consumir minutos gratis indefinidamente.
+- Tras subir el primer commit, GitHub Actions tardo unos minutos en actualizar el estado del paso unico `Test`, aunque finalmente termino correctamente; se ajusto igualmente la CI para dividir tests por workspace y anadir limites por paso sin consumir minutos gratis indefinidamente.
 - Se validaron localmente los comandos separados de API, web y paquetes compartidos usados por la CI.
 - Se actualizo el README para reemplazar `CI inicial` por `CI final` y aclarar que no despliega ni usa secretos reales.
 - Se marco `Configurar GitHub Actions final` como completada en `TASKS.md`.
@@ -91,6 +91,8 @@ Despliegue.
 - `npm run test --workspace=@wormarket/shared-types --workspace=@wormarket/shared-validation --if-present`: correcto; paquetes compartidos sin tests pendientes.
 - `npm run build`: correcto; build API y build web completadas.
 - `npm audit --audit-level=high`: correcto; informa 5 vulnerabilidades moderadas y no hay altas o criticas. No se aplica `npm audit fix --force` porque propone cambios rompientes.
+- GitHub Actions run `29416624912`: correcto; CI final inicial completa en `main`.
+- GitHub Actions run `29416950842`: correcto; CI final con tests separados completa en `main`.
 
 ### Resultado
 
@@ -98,7 +100,7 @@ GitHub Actions queda configurado como CI final gratuita para Wormarket, con base
 
 ### Riesgos o pendientes
 
-- El primer workflow subido quedo atascado en `Test`; queda pendiente validar la nueva ejecucion de GitHub Actions con los tests separados.
+- La CI final validada en GitHub Actions queda en verde con tests separados por workspace y timeouts por paso.
 - Persisten 5 vulnerabilidades moderadas reportadas por `npm audit`, sin bloqueo por el umbral alto/critico de CI.
 - La siguiente tarea es `Configurar health checks`.
 
