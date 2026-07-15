@@ -4,6 +4,13 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.26] - 2026-07-15
+
+### Changed
+
+- Monorepo local inicializado con Git y subido a `https://github.com/borjabarber/Wormarket.git` en la rama `main`.
+- `.gitignore` reforzado para excluir `.agents/`, cachés TypeScript y un residuo local de consola antes del primer push.
+
 ## [0.27.25] - 2026-07-15
 
 ### Changed

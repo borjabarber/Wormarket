@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.25`.
+Version actual: `0.27.26`.
 
 Fase activa: Despliegue.
 
@@ -25,7 +25,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Subir monorepo local a GitHub.
+- Preparar variables de entorno de produccion.
 
 ## Fase de despliegue
 

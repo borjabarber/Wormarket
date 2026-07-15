@@ -106,7 +106,7 @@ Estado: En progreso
 
 - [x] Revisar y evaluar la skill de despliegue
 - [x] Crear repositorio GitHub vacio
-- [ ] Subir monorepo local a GitHub
+- [x] Subir monorepo local a GitHub
 - [ ] Preparar variables de entorno de produccion
 - [ ] Crear proyecto Supabase
 - [ ] Configurar PostgreSQL Supabase

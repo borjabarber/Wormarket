@@ -20,6 +20,83 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Subir monorepo local a GitHub.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Subir monorepo local a GitHub`.
+- Se revisaron `skills/deployment/SKILL.md` y `skills/security/SKILL.md`.
+- Se audito la carpeta local antes de inicializar Git.
+- Se detecto `.env` local y se confirmo que esta ignorado.
+- Se detecto el archivo local vacio `{console.error(e)` y se excluyo explicitamente en `.gitignore`.
+- Se anadio `.agents/` a `.gitignore` para evitar subir artefactos del entorno de agentes.
+- Se anadio `*.tsbuildinfo` a `.gitignore` y se retiraron del indice los caches TypeScript antes del commit.
+- Se inicializo Git localmente, se configuro la rama `main` y se conecto `origin` a `https://github.com/borjabarber/Wormarket.git`.
+- Se preparo el primer commit del monorepo, confirmando que `.env`, `.agents`, `uploads`, `node_modules`, `.vercel` y caches no entraban en el indice.
+- Se creo el commit inicial `6fd3bba` con el monorepo de Wormarket.
+- Se hizo `git push -u origin main` correctamente.
+- Se marco `Subir monorepo local a GitHub` como completada en `TASKS.md`.
+- Se actualizo la version del proyecto de `0.27.25` a `0.27.26` segun `VERSIONING.md`, por hito de control del despliegue.
+
+### Archivos tocados
+
+- `.gitignore`
+- `README.md`
+- `package.json`
+- `package-lock.json`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para ejecutar el paso de repositorio dentro del flujo de despliegue gratuito.
+- `skills/security/SKILL.md`: usada para auditar secretos, `.gitignore` y artefactos antes del primer push.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada porque no se tocaron Supabase, migraciones ni seed.
+- `skills/testing/SKILL.md`: descartada como principal porque no hubo cambios funcionales; se hicieron comprobaciones Git y documentales.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque todavia no se conecta Vercel.
+
+### Comprobaciones
+
+- `rg --files -g ".env*" -g "!.env.example"`: correcto; no lista `.env` porque esta ignorado.
+- Busqueda de patrones sensibles en archivos versionables: correcto; no aparecen secretos reales.
+- `git init`: correcto tras aprobacion escalada, porque el sandbox no permitia escribir en `.git`.
+- `git remote add origin https://github.com/borjabarber/Wormarket.git`: correcto.
+- `git check-ignore -v .env node_modules .agents`: correcto.
+- `git diff --cached --name-only -- .env .agents uploads node_modules .vercel "{console.error(e)"`: correcto; no lista archivos sensibles.
+- `git commit -m chore-initial-wormarket-monorepo`: correcto; commit `6fd3bba`.
+- `git push -u origin main`: correcto.
+- `git status --short --ignored`: correcto; solo quedan ignorados locales como `.env`, builds, caches y `node_modules`.
+- `npm run format`: correcto.
+
+### Resultado
+
+Monorepo local subido correctamente a GitHub en la rama `main`.
+
+### Riesgos o pendientes
+
+- Queda pendiente subir el commit documental de cierre de esta tarea.
+- La siguiente tarea de despliegue sera `Preparar variables de entorno de produccion`.
+
+## 2026-07-15
+
+### Tarea
+
 Crear repositorio GitHub vacio.
 
 ### Fase activa

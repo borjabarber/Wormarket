@@ -73,7 +73,11 @@ Repositorio creado:
 https://github.com/borjabarber/Wormarket.git
 ```
 
-El repositorio remoto responde y esta vacio. La carpeta local todavia no esta inicializada como repositorio Git; la siguiente accion es inicializar Git, conectar el remoto y subir el monorepo.
+El repositorio remoto responde y ya contiene el monorepo local en la rama `main`.
+
+Commits iniciales:
+
+- `6fd3bba`: monorepo inicial de Wormarket.
 
 ## Variables de entorno previstas
 
