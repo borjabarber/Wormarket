@@ -20,6 +20,72 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Crear proyecto Supabase.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Crear proyecto Supabase`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron `skills/deployment/SKILL.md`, `skills/security/SKILL.md` y `skills/database/SKILL.md`.
+- El usuario confirmo que creo el proyecto Supabase siguiendo el flujo guiado, usando la organizacion `borjabarber`.
+- Se documento el proyecto Supabase como hito de despliegue sin incluir contrasenas, cadenas de conexion ni claves.
+- Se marco `Crear proyecto Supabase` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Configurar PostgreSQL Supabase`.
+- Se actualizo la version del proyecto de `0.27.27` a `0.27.28` segun `VERSIONING.md`, por hito documental de despliegue.
+
+### Archivos tocados
+
+- `README.md`
+- `package.json`
+- `package-lock.json`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/database/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para registrar el proyecto Supabase dentro del flujo GitHub + Vercel + Supabase.
+- `skills/security/SKILL.md`: usada para evitar registrar secretos, contrasenas, cadenas de conexion o claves de Supabase.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: revisada, pero no aplicada a migraciones porque esta tarea solo crea el proyecto y la configuracion de PostgreSQL queda para la siguiente tarea.
+- `skills/deploy-to-vercel/SKILL.md`: descartada porque todavia no se conecta Vercel.
+- `skills/testing/SKILL.md`: descartada como principal porque no hubo cambios ejecutables de producto.
+
+### Comprobaciones
+
+- Revision de `TASKS.md`: correcto; primera tarea pendiente era `Crear proyecto Supabase`.
+- Confirmacion del usuario: correcto; proyecto Supabase creado con organizacion `borjabarber`.
+- Revision documental: correcto; no se anadieron secretos ni valores reales.
+
+### Resultado
+
+Proyecto Supabase creado y documentado como hito de despliegue. La siguiente tarea es configurar PostgreSQL Supabase con las cadenas de conexion del panel, sin subir secretos al repositorio.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Configurar PostgreSQL Supabase`.
+- Sera necesario guiar al usuario para copiar las cadenas de conexion desde Supabase sin pegarlas en el chat ni versionarlas.
+- No se han ejecutado migraciones ni seed contra Supabase todavia.
+
+## 2026-07-15
+
+### Tarea
+
 Preparar variables de entorno de produccion.
 
 ### Fase activa

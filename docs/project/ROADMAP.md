@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Version actual: `0.27.27`.
+Version actual: `0.27.28`.
 
 Fase activa: Despliegue.
 
@@ -25,7 +25,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 
 ## Pendiente inmediato
 
-- Crear proyecto Supabase.
+- Configurar PostgreSQL Supabase.
 
 ## Fase de despliegue
 

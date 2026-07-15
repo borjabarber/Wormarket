@@ -4,6 +4,13 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.28] - 2026-07-15
+
+### Changed
+
+- Proyecto Supabase `wormarket` creado en la organizacion `borjabarber` y registrado como hito de despliegue.
+- Plan de despliegue actualizado para dejar la siguiente tarea centrada en configurar PostgreSQL Supabase sin guardar secretos en el repositorio.
+
 ## [0.27.27] - 2026-07-15
 
 ### Added

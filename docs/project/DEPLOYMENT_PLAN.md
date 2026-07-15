@@ -79,6 +79,18 @@ Commits iniciales:
 
 - `6fd3bba`: monorepo inicial de Wormarket.
 
+## Proyecto Supabase
+
+Proyecto creado en Supabase:
+
+```text
+Organizacion: borjabarber
+Nombre de proyecto: wormarket
+Plan: Free
+```
+
+No se han guardado contrasenas, cadenas de conexion ni claves de Supabase en el repositorio. La configuracion de PostgreSQL se realizara en la siguiente tarea copiando los valores desde el panel de Supabase a entornos locales o Vercel, nunca a archivos versionados.
+
 ## Variables de entorno previstas
 
 No guardar valores reales en Git. Solo documentar nombres.
@@ -124,7 +136,7 @@ El usuario tendra que hacer manualmente:
 - Crear o iniciar sesion en Vercel.
 - Autorizar Vercel para leer el repositorio.
 - Crear o iniciar sesion en Supabase.
-- Crear el proyecto Supabase.
+- Crear el proyecto Supabase. Completado con organizacion `borjabarber`.
 - Copiar cadenas de conexion y claves desde Supabase.
 - Pegar variables de entorno en Vercel.
 

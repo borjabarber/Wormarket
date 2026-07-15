@@ -108,7 +108,7 @@ Estado: En progreso
 - [x] Crear repositorio GitHub vacio
 - [x] Subir monorepo local a GitHub
 - [x] Preparar variables de entorno de produccion
-- [ ] Crear proyecto Supabase
+- [x] Crear proyecto Supabase
 - [ ] Configurar PostgreSQL Supabase
 - [ ] Ejecutar migraciones Prisma en Supabase
 - [ ] Adaptar imagenes a Supabase Storage
