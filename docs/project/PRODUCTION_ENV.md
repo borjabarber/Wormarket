@@ -23,7 +23,7 @@ No crear ni subir:
 | Variable | Uso | Donde se configurara | Secreta | Estado |
 | --- | --- | --- | --- | --- |
 | `NODE_ENV` | Modo de ejecucion | Vercel | No | Preparada |
-| `NEXT_PUBLIC_API_URL` | URL publica usada por el frontend para llamar a la API | Vercel | No | Requiere URL final de Vercel |
+| `NEXT_PUBLIC_API_URL` | Ruta publica usada por el frontend para llamar a la API | Vercel | No | Usar `/api` en Vercel |
 | `FRONTEND_URL` | Origen permitido para CORS | Vercel | No | Requiere URL final de Vercel |
 | `DATABASE_URL` | Conexion Prisma/PostgreSQL | Vercel | Si | Se obtendra de Supabase |
 | `JWT_ACCESS_SECRET` | Firma de access tokens | Vercel | Si | Se generara antes de configurar Vercel |
@@ -45,7 +45,6 @@ No crear ni subir:
 
 Todavia no podemos rellenar:
 
-- `NEXT_PUBLIC_API_URL`: depende de la URL final de Vercel y de como adaptemos la API a serverless.
 - `FRONTEND_URL`: depende de la URL final de Vercel.
 - `DATABASE_URL`: se copia desde Supabase usando la cadena pooler/runtime.
 - `DIRECT_URL`: se copia desde Supabase usando la cadena directa para migraciones Prisma.
@@ -73,7 +72,7 @@ Cuando llegue la tarea de configurar Vercel, se anadiran estas variables en el p
 
 ```env
 NODE_ENV=production
-NEXT_PUBLIC_API_URL=https://your-vercel-project.vercel.app/api
+NEXT_PUBLIC_API_URL=/api
 FRONTEND_URL=https://your-vercel-project.vercel.app
 DATABASE_URL=<copiar desde Supabase, modo pooler/runtime>
 DIRECT_URL=<copiar desde Supabase, modo direct/migrations>
@@ -94,7 +93,7 @@ NEXT_PUBLIC_REALTIME_MODE=polling
 
 - El bucket `wormarket-listing-images` debe existir en Supabase Storage antes de probar subidas en produccion.
 - Las migraciones contra Supabase ya se ejecutaron con `prisma migrate deploy`; no repetirlas sin revisar el entorno.
-- `NEXT_PUBLIC_API_URL` puede cambiar si finalmente la API vive bajo la misma URL de Vercel o se adapta con otra ruta.
+- `NEXT_PUBLIC_API_URL=/api` asume que frontend y API viven en el mismo proyecto de Vercel mediante `api/[...path].ts`.
 - `SUPABASE_SERVICE_ROLE_KEY` es una clave de servidor y nunca debe aparecer en codigo cliente ni en variables `NEXT_PUBLIC_*`.
 - `NEXT_PUBLIC_REALTIME_MODE=polling` evita depender de Socket.IO en la primera URL publica.
 

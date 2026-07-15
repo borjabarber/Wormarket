@@ -2,11 +2,11 @@
 
 ## Estado actual
 
-Version actual: `0.27.32`.
+Version actual: `0.27.33`.
 
 Fase activa: Despliegue.
 
-La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase activa pasa a despliegue con GitHub y Supabase PostgreSQL ya preparados.
+La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase activa pasa a despliegue con GitHub, Supabase PostgreSQL, Supabase Storage y API serverless para Vercel ya preparados.
 
 ## Hitos completados
 
@@ -22,11 +22,11 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 - Pruebas unitarias, integracion y e2e local.
 - Auditoria y evaluacion actualizada de skills.
 - Revision de changelog y versionado.
-- Supabase PostgreSQL migrado y Supabase Storage adaptado para imagenes de anuncios.
+- Supabase PostgreSQL migrado, Supabase Storage adaptado para imagenes de anuncios y API preparada para Vercel/serverless.
 
 ## Pendiente inmediato
 
-- Preparar API para Vercel/serverless.
+- Conectar Vercel al repositorio GitHub.
 
 ## Fase de despliegue
 
@@ -38,7 +38,7 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Ejecutar migraciones Prisma.
 - Adaptar imagenes a Supabase Storage. Completado a nivel de codigo y documentacion.
 - Realtime de produccion inicial decidido como polling REST; Supabase Realtime queda como mejora posterior.
-- Preparar API para Vercel/serverless.
+- Preparar API para Vercel/serverless. Completado: `api/[...path].ts` expone NestJS bajo `/api`.
 - Desplegar Wormarket en Vercel.
 - Configurar variables, CORS, cookies seguras y health checks.
 - Cargar datos demo controlados.

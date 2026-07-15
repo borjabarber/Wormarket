@@ -113,7 +113,7 @@ Estado: En progreso
 - [x] Ejecutar migraciones Prisma en Supabase
 - [x] Adaptar imagenes a Supabase Storage
 - [x] Revisar estrategia realtime compatible con Vercel
-- [ ] Preparar API para Vercel/serverless
+- [x] Preparar API para Vercel/serverless
 - [ ] Conectar Vercel al repositorio GitHub
 - [ ] Configurar variables de entorno en Vercel
 - [ ] Desplegar Wormarket en Vercel

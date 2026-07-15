@@ -44,7 +44,7 @@ Usuario
   v
 Vercel
   |- Next.js frontend
-  |- API serverless o endpoints adaptados
+  |- API serverless NestJS bajo /api
   |
   v
 Supabase
@@ -56,13 +56,14 @@ Supabase
 
 ## Riesgo tecnico principal
 
-El backend actual es NestJS como servidor persistente. Vercel funciona principalmente con arquitectura serverless, por lo que no se debe asumir que `apps/api` se despliega sin cambios como si fuera Render.
+El backend actual es NestJS y ya tiene una entrada serverless inicial para Vercel en `api/[...path].ts`. Esa funcion reutiliza el bootstrap de `apps/api`, cachea la aplicacion NestJS por instancia y sirve los controladores actuales bajo `/api`.
 
-Antes de publicar hay que decidir una estrategia:
+La estrategia elegida para la primera URL publica es:
 
-- adaptar endpoints a Vercel/serverless,
-- mover una capa API minima a Next.js,
-- o mantener solo lo necesario para la demo publica.
+- mantener el monorepo en un solo proyecto Vercel,
+- construir el frontend Next.js desde `apps/web`,
+- exponer la API NestJS desde `api/[...path].ts`,
+- configurar `NEXT_PUBLIC_API_URL=/api`.
 
 Socket.IO queda limitado al desarrollo local para el primer despliegue. La estrategia inicial de produccion sera polling REST con TanStack Query para chat y notificaciones, documentada en `docs/project/REALTIME_STRATEGY.md`. Supabase Realtime queda como mejora posterior si aporta valor antes de la demo final.
 
@@ -161,7 +162,7 @@ Codex debe guiar cada paso cuando llegue, indicando exactamente que boton o camp
 6. Ejecutar migraciones Prisma.
 7. Adaptar Supabase Storage. Completado a nivel de codigo y documentacion.
 8. Revisar estrategia realtime. Completado: produccion inicial usara polling REST.
-9. Preparar API para Vercel.
+9. Preparar API para Vercel. Completado con `vercel.json` y funcion catch-all `/api`.
 10. Conectar Vercel al repositorio.
 11. Configurar variables de entorno.
 12. Desplegar.

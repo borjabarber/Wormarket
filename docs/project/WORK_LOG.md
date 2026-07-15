@@ -20,6 +20,100 @@ Cada entrada debe incluir:
 
 ### Tarea
 
+Preparar API para Vercel/serverless.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- Se reviso la primera tarea pendiente de despliegue: `Preparar API para Vercel/serverless`.
+- Se inspeccionaron las skills disponibles en `skills/`.
+- Se revisaron y aplicaron `skills/deployment/SKILL.md`, `skills/backend/SKILL.md`, `skills/security/SKILL.md` y `skills/testing/SKILL.md`.
+- Se reviso `skills/deploy-to-vercel/SKILL.md` como referencia secundaria para Vercel.
+- Se consulto documentacion oficial vigente de Vercel sobre monorepos, configuracion de proyecto y Functions.
+- Se extrajo el bootstrap comun de NestJS a `apps/api/src/bootstrap.ts`, manteniendo CORS y carga de entorno en un unico punto.
+- Se simplifico `apps/api/src/main.ts` para que el servidor local siga usando `app.listen(PORT)`.
+- Se anadio `api/[...path].ts` como entrada serverless de Vercel, cacheando la instancia NestJS por runtime y sirviendo los controladores actuales bajo `/api`.
+- Se anadio `vercel.json` para construir el frontend desde `apps/web`, usar `apps/web/.next` como salida y configurar la funcion serverless.
+- Se anadio `tsconfig.json` raiz para validar la entrada serverless y el backend importado con decoradores de NestJS.
+- Se anadio `typecheck:vercel` y se integro en `npm run typecheck`.
+- Se ajusto `NEXT_PUBLIC_API_URL` de produccion a `/api`, porque frontend y API viviran en el mismo proyecto Vercel.
+- Se documento el flujo en `docs/project/VERCEL_SERVERLESS_API.md`.
+- Se marco `Preparar API para Vercel/serverless` como completada en `TASKS.md`.
+- Se actualizo el pendiente inmediato del roadmap a `Conectar Vercel al repositorio GitHub`.
+- Se actualizo la version del proyecto de `0.27.32` a `0.27.33` segun `VERSIONING.md`, por hito tecnico de despliegue.
+
+### Archivos creados
+
+- `api/[...path].ts`
+- `apps/api/src/bootstrap.ts`
+- `docs/project/VERCEL_SERVERLESS_API.md`
+- `tsconfig.json`
+- `vercel.json`
+
+### Archivos tocados
+
+- `.env.production.example`
+- `README.md`
+- `apps/api/src/main.ts`
+- `docs/project/TASKS.md`
+- `docs/project/DEPLOYMENT_PLAN.md`
+- `docs/project/PRODUCTION_ENV.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/WORK_LOG.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/VERSIONING.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/backend/SKILL.md`
+- `skills/security/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/deploy-to-vercel/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para mantener el despliegue gratuito GitHub + Vercel + Supabase y documentar riesgos serverless.
+- `skills/backend/SKILL.md`: usada para reutilizar el bootstrap de NestJS sin romper el servidor local.
+- `skills/security/SKILL.md`: usada para mantener secretos fuera del repositorio y documentar variables de Vercel sin valores reales.
+- `skills/testing/SKILL.md`: usada para definir comprobaciones proporcionales de serverless, typecheck, lint, tests y build.
+
+### Skills descartadas
+
+- `skills/database/SKILL.md`: descartada porque no se tocaron Prisma, modelos ni migraciones.
+- `skills/frontend/SKILL.md`: descartada porque no se modifico interfaz ni comportamiento de cliente, mas alla de documentar `/api`.
+- `skills/deploy-to-vercel/SKILL.md`: revisada como referencia, pero no aplicada como principal porque todavia no se conecta ni despliega Vercel.
+
+### Comprobaciones
+
+- `npm run typecheck:vercel`: correcto.
+- `npm run typecheck`: correcto.
+- `npm run format`: correcto.
+- `npm run lint`: correcto.
+- `npm run test`: correcto; API 52 archivos/105 tests, Web 23 archivos/65 tests, paquetes compartidos sin tests pasan con placeholder permitido.
+- `npm run build`: correcto.
+- `git diff --check`: correcto; solo avisos de fin de linea CRLF esperados en Windows.
+- Revision de `.env.production.example`: correcto; no contiene secretos reales.
+
+### Resultado
+
+Wormarket queda preparado a nivel de codigo para publicar frontend y API en un unico proyecto Vercel. La API NestJS se servira bajo `/api` y el frontend debera usar `NEXT_PUBLIC_API_URL=/api` en produccion.
+
+### Riesgos o pendientes
+
+- La siguiente tarea es `Conectar Vercel al repositorio GitHub`.
+- La funcion serverless no se ha probado aun en una URL real de Vercel; se validara al desplegar.
+- Socket.IO queda fuera de la primera produccion y el modo recomendado sigue siendo `NEXT_PUBLIC_REALTIME_MODE=polling`.
+
+## 2026-07-15
+
+### Tarea
+
 Revisar estrategia realtime compatible con Vercel.
 
 ### Fase activa

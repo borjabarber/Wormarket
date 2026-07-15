@@ -4,6 +4,21 @@ Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 ## [Unreleased]
 
+## [0.27.33] - 2026-07-15
+
+### Added
+
+- Entrada serverless `api/[...path].ts` para exponer la API NestJS de Wormarket bajo `/api` en Vercel.
+- Configuracion `vercel.json` para construir el frontend desde `apps/web` y servir la API en el mismo proyecto.
+- Typecheck especifico `typecheck:vercel` para validar la entrada serverless y el backend importado.
+- Documento `docs/project/VERCEL_SERVERLESS_API.md` con rutas, variables, limitaciones y comprobaciones.
+
+### Changed
+
+- Bootstrap de NestJS extraido a `apps/api/src/bootstrap.ts` para compartir configuracion entre servidor local y Vercel.
+- `NEXT_PUBLIC_API_URL` de produccion documentada como `/api`.
+- Tarea `Preparar API para Vercel/serverless` marcada como completada.
+
 ## [0.27.32] - 2026-07-15
 
 ### Added

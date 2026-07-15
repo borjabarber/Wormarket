@@ -13,7 +13,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `0.27.32`.
+- Version actual: `0.27.33`.
 - Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
@@ -107,6 +107,8 @@ npm run test:e2e:cleanup
 ## Estructura del proyecto
 
 ```text
+api/
+  [...path].ts
 apps/
   web/
     package.json
@@ -174,6 +176,8 @@ El plan de despliegue gratuito esta en `docs/project/DEPLOYMENT_PLAN.md`.
 
 Las variables de entorno de produccion estan preparadas en `docs/project/PRODUCTION_ENV.md` y `.env.production.example`. No contienen secretos reales.
 
+La API esta preparada para Vercel mediante `api/[...path].ts`, que expone el backend NestJS bajo `/api` y reutiliza la misma configuracion de CORS que el servidor local. En produccion, `NEXT_PUBLIC_API_URL` debe configurarse como `/api`.
+
 ## Scripts raiz
 
 La raiz expone los comandos principales del monorepo:
@@ -189,6 +193,7 @@ npm run lint
 npm run format
 npm run format:write
 npm run typecheck
+npm run typecheck:vercel
 npm run test
 npm run test:unit
 npm run test:e2e
