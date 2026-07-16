@@ -577,6 +577,4 @@ Las rutas de Reviews permiten valorar transacciones completadas. `POST /reviews`
 
 Las rutas de Moderation requieren access token. Cualquier usuario autenticado puede crear denuncias sobre anuncios o perfiles. Solo usuarios con rol `MODERATOR` o `ADMIN` pueden listar denuncias, resolverlas, bloquear anuncios y bloquear usuarios. Los anuncios bloqueados dejan de aparecer en lecturas publicas y los usuarios bloqueados no pueden publicar nuevos anuncios.
 
-## Restricciones
 
-La fase local queda aprobada. La fase de despliegue avanza con estrategia gratuita basada en GitHub, Vercel y Supabase, de forma incremental, documentada y sin guardar variables de produccion ni secretos reales en el repositorio.
