@@ -175,7 +175,7 @@ La guia paso a paso de demostracion esta en `docs/project/LOCAL_DEMO_GUIDE.md`.
 
 ## Presentacion TFM
 
-La presentacion horizontal para defender el proyecto esta en `docs/project/Wormarket_TFM_presentation.pptx`.
+La presentacion horizontal para defender el proyecto esta en `docs/project/Wormarket_TFM_presentation.pdf`.
 
 ## Despliegue
 
