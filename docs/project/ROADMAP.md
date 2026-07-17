@@ -2,18 +2,18 @@
 
 ## Estado actual
 
-Version actual: `1.0.0`.
+Version actual: `1.0.2`.
 
 Fase activa: Despliegue.
 
-La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase de despliegue queda completada con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless, proyecto Vercel conectado, variables de entorno configuradas, despliegue publico operativo, runbook documentado, version `1.0.0` cerrada sin tag ni release y presentacion TFM preparada.
+La fase local esta completada y aprobada: funcionalidades principales, seed visual, pruebas, revisiones de calidad, auditoria de skills, changelog, versionado, README academico y validacion completa local quedan cerrados. La fase de despliegue queda completada con GitHub, Supabase PostgreSQL, Supabase Storage, API serverless, proyecto Vercel conectado, variables de entorno configuradas, despliegue publico operativo, runbook documentado, version `1.0.2` sincronizada sin tag ni release, presentacion TFM preparada y GitHub Actions en modo manual.
 
 ## Hitos completados
 
 - Preparacion documental y nombre oficial Wormarket.
 - Monorepo con npm workspaces.
 - Frontend Next.js y backend NestJS.
-- TypeScript estricto, ESLint, Prettier, Vitest, Supertest y CI final gratuita.
+- TypeScript estricto, ESLint, Prettier, Vitest, Supertest y CI final gratuita en modo manual.
 - PostgreSQL local con Docker, Prisma, migraciones y seed.
 - Modulos backend: Dimensions, Users, Identity, Listings, Favorites, Offers, Transactions, Conversations, Reviews, Notifications, Moderation y Storage.
 - Pantallas frontend: home/explorador, autenticacion, detalle, creacion, edicion, favoritos, ofertas, chat, perfil, transacciones, valoraciones, notificaciones y moderacion.
@@ -22,7 +22,7 @@ La fase local esta completada y aprobada: funcionalidades principales, seed visu
 - Pruebas unitarias, integracion y e2e local.
 - Auditoria y evaluacion actualizada de skills.
 - Revision de changelog y versionado.
-- Supabase PostgreSQL migrado, Supabase Storage adaptado para imagenes de anuncios, API preparada para Vercel/serverless, repositorio GitHub conectado/importado en Vercel con raiz `./`, variables de entorno configuradas, URL publica desplegada, seed demo cargado en Supabase, CI final gratuita validada, flujo e2e publico completado y runbook de despliegue documentado.
+- Supabase PostgreSQL migrado, Supabase Storage adaptado para imagenes de anuncios, API preparada para Vercel/serverless, repositorio GitHub conectado/importado en Vercel con raiz `./`, variables de entorno configuradas, URL publica desplegada, seed demo cargado en Supabase, CI final gratuita validada y posteriormente dejada en modo manual, flujo e2e publico completado y runbook de despliegue documentado.
 
 ## Pendiente inmediato
 
@@ -43,7 +43,7 @@ La fase de despliegue queda activa tras aprobar la fase local. El roadmap previs
 - Configurar variables de entorno en Vercel. Completado: variables importadas desde `.env.vercel.local` local ignorado por Git, sin registrar secretos.
 - Desplegar Wormarket en Vercel. Completado: frontend publico carga y `GET /api/health` responde 200.
 - Cargar datos demo controlados. Completado: Supabase contiene los usuarios demo, dimensiones, anuncios y datos relacionados del seed idempotente.
-- Configurar GitHub Actions final. Completado: CI gratuita con PostgreSQL local, migraciones, seed, calidad, tests, build y audit.
+- Configurar GitHub Actions final. Completado: CI gratuita con PostgreSQL local, migraciones, seed, calidad, tests, build y audit. Tras el cierre del TFM queda en modo manual para no ejecutarse automaticamente en cada push o pull request.
 - Configurar health checks. Completado: liveness, readiness con PostgreSQL y script `health:public`.
 - Probar flujo completo en URL publica. Completado con `npm run test:e2e:public`.
 - Documentar despliegue. Completado con `docs/project/DEPLOYMENT_RUNBOOK.md`.

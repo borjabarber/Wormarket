@@ -1,7 +1,7 @@
 # Estado del proyecto
 
 Fase activa: Despliegue  
-Estado: En corrección
+Estado: Completado
 
 # Fase 1: desarrollo local
 
@@ -102,7 +102,7 @@ Estado: En corrección
 
 # Fase 2: despliegue
 
-Estado: En progreso
+Estado: Completado
 
 - [x] Revisar y evaluar la skill de despliegue
 - [x] Crear repositorio GitHub vacio

@@ -1,14 +1,7 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
-      - develop
+  # Manual after TFM closure: avoid automatic runs on push/PR.
   workflow_dispatch:
 
 concurrency:

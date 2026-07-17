@@ -1,5 +1,5 @@
-
 ![Banner](./imagenes_ads/gitbanner.png)
+
 # Wormarket
 
 Wormarket es un marketplace interdimensional de objetos imposibles.
@@ -15,8 +15,8 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 ## Estado actual
 
 - Fase activa: Despliegue.
-- Version actual: `1.0.0`.
-- Estado: fase local aprobada con backend y frontend completos para el MVP local, autenticacion, anuncios, favoritos, ofertas, chat, transacciones, valoraciones, notificaciones, moderacion, subida local de imagenes, seed visual, demo limpia, pruebas principales ejecutadas y documentacion reorganizada para entrega academica.
+- Version actual: `1.0.2`.
+- Estado: fase local y despliegue aprobados con backend y frontend completos, URL publica operativa en Vercel + Supabase, demo limpia, presentacion TFM preparada y GitHub Actions conservado en modo manual para evitar ejecuciones automaticas tras el cierre.
 - Repositorio GitHub de despliegue: `https://github.com/borjabarber/Wormarket.git`.
 
 ## Stack tecnologico utilizado
@@ -49,7 +49,7 @@ Calidad, entorno y herramientas:
 - ESLint.
 - Prettier.
 - Docker y Docker Compose.
-- GitHub Actions para CI final gratuita.
+- GitHub Actions para CI final gratuita en modo manual.
 - Scripts locales para seed, migraciones, smoke test y flujo e2e.
 
 ## Instalacion y ejecucion
@@ -433,7 +433,9 @@ Esta comprobacion se mantiene como smoke manual local porque depende de levantar
 
 ## CI final
 
-El workflow final de GitHub Actions vive en `.github/workflows/ci.yml` y usa solo recursos gratuitos del runner: Node.js, npm y un servicio PostgreSQL local de Docker. No despliega, no usa secretos de Supabase y no escribe en servicios cloud.
+El workflow final de GitHub Actions vive en `.github/workflows/ci.yml` y queda en modo manual mediante `workflow_dispatch`. No se ejecuta automaticamente al hacer `push` o abrir `pull_request`, para evitar ejecuciones innecesarias y fallos visibles una vez cerrada la entrega del TFM.
+
+Cuando haga falta revisarlo, se puede lanzar desde GitHub en `Actions > CI > Run workflow`. Usa solo recursos gratuitos del runner: Node.js, npm y un servicio PostgreSQL local de Docker. No despliega, no usa secretos de Supabase y no escribe en servicios cloud.
 
 Ejecuta:
 
@@ -576,5 +578,3 @@ Para produccion inicial en Vercel, realtime no dependera de Socket.IO. La estrat
 Las rutas de Reviews permiten valorar transacciones completadas. `POST /reviews` requiere cabecera `Authorization: Bearer <accessToken>` y crea una valoracion del otro participante de la transaccion; cada participante solo puede valorar una vez la misma transaccion. `GET /users/:username/reviews` lista publicamente las valoraciones recibidas por un usuario. La reputacion publica se recalcula como media de estrellas en escala 0-100.
 
 Las rutas de Moderation requieren access token. Cualquier usuario autenticado puede crear denuncias sobre anuncios o perfiles. Solo usuarios con rol `MODERATOR` o `ADMIN` pueden listar denuncias, resolverlas, bloquear anuncios y bloquear usuarios. Los anuncios bloqueados dejan de aparecer en lecturas publicas y los usuarios bloqueados no pueden publicar nuevos anuncios.
-
-

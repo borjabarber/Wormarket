@@ -16,6 +16,73 @@ Cada entrada debe incluir:
 - Resultado.
 - Riesgos o pendientes.
 
+## 2026-07-17
+
+### Tarea
+
+Desactivar ejecuciones automaticas de GitHub Actions tras el cierre del TFM.
+
+### Fase activa
+
+Despliegue.
+
+### Trabajo realizado
+
+- El usuario reporto que GitHub Actions seguia ejecutandose y generando fallos visibles tras haber cerrado el proyecto.
+- Se reviso la fase activa y se trato como correccion final de despliegue, sin avanzar a nuevas tareas funcionales.
+- Se inspeccionaron las skills disponibles y se revisaron las aplicables.
+- Se cambio `.github/workflows/ci.yml` para dejar la CI solo con `workflow_dispatch`, eliminando disparadores automaticos en `push` y `pull_request`.
+- Se mantuvo intacto el contenido del job para poder ejecutarlo manualmente desde GitHub Actions si hace falta.
+- Se actualizo README, ROADMAP, TASKS, CHANGELOG y VERSIONING para documentar que la CI final queda en modo manual.
+- Se actualizo la version de `1.0.1` a `1.0.2` segun `VERSIONING.md`, por cambio operativo/documental relevante de cierre.
+
+### Archivos creados
+
+- Ninguno.
+
+### Archivos tocados
+
+- `.github/workflows/ci.yml`
+- `README.md`
+- `docs/project/TASKS.md`
+- `docs/project/ROADMAP.md`
+- `docs/project/VERSIONING.md`
+- `docs/project/CHANGELOG.md`
+- `docs/project/WORK_LOG.md`
+- `package.json`
+- `package-lock.json`
+
+### Skills revisadas
+
+- `skills/deployment/SKILL.md`
+- `skills/testing/SKILL.md`
+- `skills/security/SKILL.md`
+
+### Skills aplicadas
+
+- `skills/deployment/SKILL.md`: usada para ajustar la CI final dentro de la fase de despliegue sin tocar Vercel, Supabase ni secretos.
+- `skills/testing/SKILL.md`: usada para elegir comprobaciones proporcionales al cambio de workflow y documentacion.
+
+### Skills descartadas
+
+- `skills/security/SKILL.md`: revisada para confirmar que no se introducen secretos ni variables sensibles; no requirio cambios de seguridad.
+
+### Comprobaciones
+
+- `npm run format`: fallo inicialmente por formato pendiente en `README.md`.
+- `npm run format:write`: correcto; formateo `README.md`.
+- `npm run lint`: correcto.
+- `npm run typecheck`: correcto.
+
+### Resultado
+
+GitHub Actions queda disponible solo como ejecucion manual, evitando nuevos runs automaticos en commits o pull requests.
+
+### Riesgos o pendientes
+
+- Al subir este cambio se usara un mensaje de commit con `[skip ci]` para evitar que el workflow anterior dispare una ultima ejecucion por `push`.
+- No se han creado tags ni releases.
+
 ## 2026-07-15
 
 ### Tarea

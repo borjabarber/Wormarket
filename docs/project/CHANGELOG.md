@@ -3,7 +3,19 @@
 Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
 
+## [1.0.2] - 2026-07-17
 
+### Changed
+
+- GitHub Actions final cambiado a modo manual (`workflow_dispatch`) para evitar ejecuciones automaticas en `push` y `pull_request` tras el cierre del TFM.
+- README, roadmap, tareas, versionado y paquetes raiz sincronizados con `1.0.2`.
+
+### Notes
+
+- El workflow CI sigue disponible desde GitHub Actions > CI > Run workflow.
+- No se han creado tags ni releases porque requieren permiso explicito.
+
+## [1.0.1] - 2026-07-15
 
 ### Changed
 
