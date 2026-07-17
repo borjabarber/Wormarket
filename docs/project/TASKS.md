@@ -1,7 +1,7 @@
 # Estado del proyecto
 
 Fase activa: Despliegue  
-Estado: En progreso
+Estado: En corrección
 
 # Fase 1: desarrollo local
 

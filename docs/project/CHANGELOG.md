@@ -2,13 +2,8 @@
 
 Todos los cambios relevantes de Wormarket se documentan en este archivo.
 
-## [Unreleased]
 
-## [1.0.1] - 2026-07-15
 
-### Added
-
-- Presentacion horizontal para defensa del TFM en `docs/project/Wormarket_TFM_presentation.pptx`, con slides de proyecto, fases local/despliegue, stack tecnologico y guion de demo.
 
 ### Changed
 

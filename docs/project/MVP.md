@@ -41,7 +41,6 @@ La fase local ya contiene los modulos principales de backend, las pantallas fron
 - La eliminacion directa de anuncios por vendedor no esta expuesta como pantalla principal; el MVP local cubre edicion, estados de anuncio y bloqueo por moderacion.
 - No hay pagos reales, envios reales ni confirmaciones externas.
 - Las credenciales demo son ficticias y solo sirven para desarrollo local.
-- La fase de despliegue sigue bloqueada hasta aprobacion explicita.
 
 ## Fuera del MVP
 
