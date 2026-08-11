@@ -12,6 +12,12 @@ Wormarket es una plataforma web de compraventa ficticia donde usuarios de distin
 
 El objetivo academico es demostrar una aplicacion full stack local con arquitectura modular, backend API REST, frontend responsive, persistencia PostgreSQL, autenticacion, autorizacion, tiempo real, pruebas, seguridad basica, accesibilidad y documentacion tecnica.
 
+##  Demo
+
+Puedes ver una demostración del proyecto aquí:
+
+[Ver demo en Vimeo](https://vimeo.com/1217236913)
+
 ## Estado actual
 
 - Fase activa: Despliegue.
@@ -556,12 +562,6 @@ POST /moderation/users/:username/block
 POST /storage/uploads
 GET /uploads/:fileName
 ```
-
-##  Demo
-
-Puedes ver una demostración del proyecto aquí:
-
-[Ver demo en Vimeo](https://vimeo.com/1217236913)
 
 
 Las rutas de Identity usan JWT local firmado con `JWT_ACCESS_SECRET` y `JWT_REFRESH_SECRET`. Estas variables pueden definirse en el `.env` local de la raiz o en el entorno del proceso; `.env.example` documenta los nombres sin incluir secretos reales.
