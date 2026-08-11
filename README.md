@@ -16,7 +16,7 @@ El objetivo academico es demostrar una aplicacion full stack local con arquitect
 
 Puedes ver una demostración del proyecto aquí:
 
-[Ver demo en Vimeo](https://vimeo.com/1217236913)
+[Ver en Vimeo](https://vimeo.com/1217236913)
 
 ## Estado actual
 
