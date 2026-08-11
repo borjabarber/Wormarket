@@ -557,6 +557,13 @@ POST /storage/uploads
 GET /uploads/:fileName
 ```
 
+##  Demo
+
+Puedes ver una demostración del proyecto aquí:
+
+[Ver demo en Vimeo](https://vimeo.com/1217236913)
+
+
 Las rutas de Identity usan JWT local firmado con `JWT_ACCESS_SECRET` y `JWT_REFRESH_SECRET`. Estas variables pueden definirse en el `.env` local de la raiz o en el entorno del proceso; `.env.example` documenta los nombres sin incluir secretos reales.
 
 Las rutas de Storage usan `STORAGE_DRIVER=local` durante desarrollo y `STORAGE_DRIVER=supabase` para produccion. La subida esta protegida por access token y limita imagenes a JPG, PNG, WebP o GIF de hasta 2 MB. En local, la lectura de `/uploads/:fileName` es publica para servir `uploads/`; en produccion, el adaptador de Supabase Storage devuelve la URL publica del bucket `wormarket-listing-images`.
