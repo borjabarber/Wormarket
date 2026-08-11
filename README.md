@@ -585,7 +585,9 @@ Para produccion inicial en Vercel, realtime no dependera de Socket.IO. La estrat
 Las rutas de Reviews permiten valorar transacciones completadas. `POST /reviews` requiere cabecera `Authorization: Bearer <accessToken>` y crea una valoracion del otro participante de la transaccion; cada participante solo puede valorar una vez la misma transaccion. `GET /users/:username/reviews` lista publicamente las valoraciones recibidas por un usuario. La reputacion publica se recalcula como media de estrellas en escala 0-100.
 
 Las rutas de Moderation requieren access token. Cualquier usuario autenticado puede crear denuncias sobre anuncios o perfiles. Solo usuarios con rol `MODERATOR` o `ADMIN` pueden listar denuncias, resolverlas, bloquear anuncios y bloquear usuarios. Los anuncios bloqueados dejan de aparecer en lecturas publicas y los usuarios bloqueados no pueden publicar nuevos anuncios.
+```
 
 ## Presentación al jurado
 
 [ver en Vimeo](https://vimeo.com/1210751748)
+```
