@@ -442,30 +442,6 @@ El script comprueba `GET /health`, la ruta web `/auth`, lecturas publicas de anu
 
 Esta comprobacion se mantiene como smoke manual local porque depende de levantar servidores web y API. La CI final si levanta PostgreSQL local, aplica migraciones y carga el seed demo antes de ejecutar las comprobaciones de calidad.
 
-## CI final
-
-El workflow final de GitHub Actions vive en `.github/workflows/ci.yml` y queda en modo manual mediante `workflow_dispatch`. No se ejecuta automaticamente al hacer `push` o abrir `pull_request`, para evitar ejecuciones innecesarias y fallos visibles una vez cerrada la entrega del TFM.
-
-Cuando haga falta revisarlo, se puede lanzar desde GitHub en `Actions > CI > Run workflow`. Usa solo recursos gratuitos del runner: Node.js, npm y un servicio PostgreSQL local de Docker. No despliega, no usa secretos de Supabase y no escribe en servicios cloud.
-
-Ejecuta:
-
-```bash
-npm ci
-npm run db:generate
-npm run db:migrate:deploy
-npm run db:seed
-npm run format
-npm run lint
-npm run typecheck
-npm run test --workspace=@wormarket/api -- --pool=forks --teardownTimeout=5000
-npm run test --workspace=@wormarket/web -- --pool=forks --teardownTimeout=5000
-npm run test --workspace=@wormarket/shared-types --workspace=@wormarket/shared-validation --if-present
-npm run build
-npm audit --audit-level=high
-```
-
-La CI no despliega, no configura servicios cloud y no ejecuta migraciones contra bases de datos de produccion. Las variables JWT del workflow son valores ficticios de CI, no secretos reales.
 
 ## Frontend Next.js
 
